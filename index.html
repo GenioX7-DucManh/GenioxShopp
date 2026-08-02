@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GenioXShipp</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#121214;--bg2:#181c2e;--bg3:#242b42;
+    --accent:#f5b942;--accent2:#ffd27a;
+    --blue:#5cabff;--blue2:#3a8ce0;
+    --red:#ff5252;--green:#4ade80;--purple:#d478f5;
+    --text:#f2efe6;--muted:#a8adc0;
+    --border:rgba(245,185,66,0.3);
+    --card:#1c2138;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{overflow-x:hidden;width:100%;}
+  *{max-width:100%;}
+  body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;width:100%;}
+
+  /* HEADER */
+  header{background:linear-gradient(180deg,#161a2c 0%,var(--bg2) 100%);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+  .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;height:60px;gap:1rem;}
+  .logo{font-family:'Be Vietnam Pro',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:2px;white-space:nowrap;color:#a855f7;text-shadow:0 0 20px rgba(168,85,247,0.4);}
+  .logo span{color:#d8b4fe;}
+  nav{display:flex;gap:6px;}
+  nav a{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:1.2px;color:var(--muted);text-decoration:none;padding:9px 18px;border-radius:10px;border:1px solid transparent;transition:all .2s;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;}
+  nav a svg{flex-shrink:0;}
+  nav a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+  nav a.active{color:var(--accent2);border-color:rgba(232,160,32,0.45);background:linear-gradient(135deg,rgba(232,160,32,0.2),rgba(232,160,32,0.04));box-shadow:0 4px 16px rgba(232,160,32,0.18),inset 0 1px 0 rgba(255,255,255,0.06);}
+  .header-right{display:flex;align-items:center;gap:10px;}
+  .mobile-nav{display:none;gap:4px;overflow-x:auto;padding:8px 1rem;border-top:1px solid var(--border);background:var(--bg2);}
+  .mobile-nav a{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 16px;border-radius:10px;border:1px solid transparent;white-space:nowrap;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+  .mobile-nav a svg{flex-shrink:0;}
+  .mobile-nav a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+  .mobile-nav a.active{color:var(--accent2);border-color:rgba(232,160,32,0.45);background:linear-gradient(135deg,rgba(232,160,32,0.2),rgba(232,160,32,0.04));box-shadow:0 4px 16px rgba(232,160,32,0.18),inset 0 1px 0 rgba(255,255,255,0.06);}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#161a2c 0%,#202844 50%,#141830 100%);border-bottom:1px solid var(--border);padding:2rem 1rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(74,158,255,0.06) 0%,transparent 70%);}
+  .hero h1{font-family:'Be Vietnam Pro',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:800;letter-spacing:0.5px;color:#f2efe6;text-shadow:0 0 12px rgba(168,85,247,0.9),0 0 28px rgba(168,85,247,0.5);margin-bottom:.4rem;}
+  .hero p{color:var(--muted);font-size:.95rem;letter-spacing:1px;}
+  .hero-tags{display:flex;gap:10px;justify-content:center;margin-top:1.1rem;flex-wrap:wrap;}
+  .htag{font-size:.78rem;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:8px 18px;border-radius:24px;border:1px solid;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px);}
+  .htag.gold{color:var(--accent2);border-color:rgba(232,160,32,0.4);background:linear-gradient(135deg,rgba(232,160,32,0.16),rgba(232,160,32,0.03));box-shadow:0 4px 16px rgba(232,160,32,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
+  .htag.blue{color:#a9d4ff;border-color:rgba(74,158,255,0.4);background:linear-gradient(135deg,rgba(74,158,255,0.16),rgba(74,158,255,0.03));box-shadow:0 4px 16px rgba(74,158,255,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
+  .htag.green{color:#8ff0b3;border-color:rgba(62,207,110,0.4);background:linear-gradient(135deg,rgba(62,207,110,0.16),rgba(62,207,110,0.03));box-shadow:0 4px 16px rgba(62,207,110,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
+
+  /* HAMBURGER MENU */
+  .menu-toggle{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--accent);flex-shrink:0;transition:all .2s;}
+  .menu-toggle:hover{border-color:rgba(232,160,32,0.6);background:rgba(232,160,32,0.08);}
+  .menu-toggle svg{width:20px;height:20px;}
+  .menu-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:1rem;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:10px;min-width:220px;box-shadow:0 15px 40px rgba(0,0,0,0.55);z-index:150;}
+  .menu-dropdown.open{display:block;}
+  .menu-dropdown .menu-section-title{font-family:'Be Vietnam Pro',sans-serif;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;padding:6px 10px 4px;}
+  .menu-dropdown a{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;color:var(--text);text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:.9rem;transition:all .15s;}
+  .menu-dropdown a svg{flex-shrink:0;}
+  .menu-dropdown a:hover{background:rgba(232,160,32,0.1);color:var(--accent);}
+  .menu-dropdown hr{border:none;border-top:1px solid var(--border);margin:6px 0;}
+
+  /* MAIN */
+  main{max-width:1200px;margin:0 auto;padding:1.5rem 1rem 3rem;}
+  .section{display:none;}
+  .section.active{display:block;}
+  .section-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+  .section-title::before{content:'';display:block;width:4px;height:22px;background:var(--accent);border-radius:2px;}
+
+  /* VIP */
+  .vip-single{max-width:940px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start;}
+  .vip-card-main{border-radius:20px;padding:32px 28px;position:relative;overflow:hidden;background:linear-gradient(135deg,#2a2410 0%,#332c14 100%);border:2px solid rgba(232,160,32,0.55);cursor:pointer;transition:all .25s;}
+  .vip-card-main:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,160,32,0.2);}
+  .vip-glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.15) 0%,transparent 70%);}
+  .vip-crown{font-size:3rem;margin-bottom:10px;display:block;}
+  .vip-tier-label{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:2rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);text-shadow:0 0 30px rgba(232,160,32,0.5);}
+  .vip-tagline{color:var(--muted);font-size:.9rem;margin:6px 0 20px;letter-spacing:1px;}
+  .vip-price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
+  .vip-big-price{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:2.8rem;color:var(--accent);}
+  .vip-period{color:var(--muted);font-size:.85rem;}
+  .vip-divider{border:none;border-top:1px solid rgba(232,160,32,0.2);margin:18px 0;}
+  .vip-perks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-bottom:24px;}
+  .vip-perks li{font-size:.87rem;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .vip-perks li::before{content:'✦';color:var(--accent);font-size:.75rem;}
+  .btn-vip-main{width:100%;padding:14px;border-radius:10px;border:none;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:2px;text-transform:uppercase;background:var(--accent);color:#0a0c14;cursor:pointer;transition:all .2s;}
+  .btn-vip-main:hover{background:var(--accent2);transform:translateY(-1px);}
+
+  /* VIP SILVER (gói giá rẻ) */
+  .vip-card-main.silver{background:linear-gradient(135deg,#22242f 0%,#2a2f3e 100%);border:2px solid rgba(180,190,205,0.4);}
+  .vip-card-main.silver:hover{box-shadow:0 16px 50px rgba(180,190,205,0.15);}
+  .vip-card-main.silver .vip-glow{background:radial-gradient(circle,rgba(180,190,205,0.15) 0%,transparent 70%);}
+  .vip-card-main.silver .vip-tier-label{color:#c7cede;text-shadow:0 0 30px rgba(180,190,205,0.35);}
+  .vip-card-main.silver .vip-big-price{color:#c7cede;}
+  .vip-card-main.silver .vip-divider{border-top:1px solid rgba(180,190,205,0.2);}
+  .vip-card-main.silver .vip-perks li::before{color:#c7cede;}
+  .vip-card-main.silver .btn-vip-main{background:#c7cede;color:#0a0c14;}
+  .vip-card-main.silver .btn-vip-main:hover{background:#e0e5f0;}
+
+  /* WEAPON GRID */
+  .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+  .item-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;position:relative;cursor:pointer;}
+  .item-card:hover{transform:translateY(-5px);border-color:rgba(232,160,32,0.55);box-shadow:0 10px 35px rgba(232,160,32,0.14);}
+  .item-img-wrap{
+    height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-radius:13px 13px 0 0;
+  }
+  .item-img-wrap.theme-purple{
+    border:1px solid rgba(200,160,255,0.5);
+    background:
+      radial-gradient(circle at 50% 40%, rgba(160,90,240,0.55) 0%, transparent 68%),
+      linear-gradient(135deg,#2a1245 0%,#3a1860 100%);
+  }
+  .item-img-wrap.theme-red{
+    border:1px solid rgba(255,150,150,0.5);
+    background:
+      radial-gradient(circle at 50% 40%, rgba(230,50,60,0.5) 0%, transparent 68%),
+      linear-gradient(135deg,#450e12 0%,#601218 100%);
+  }
+  .item-img-wrap.theme-gold{
+    border:1px solid rgba(255,220,140,0.6);
+    background:
+      radial-gradient(circle at 50% 40%, rgba(255,195,60,0.55) 0%, transparent 68%),
+      linear-gradient(135deg,#4a3308 0%,#66450c 100%);
+  }
+  .item-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20px;background:linear-gradient(transparent,var(--card));}
+  .hot-badge{position:absolute;top:4px;right:4px;z-index:3;width:38px;height:38px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 2px 6px rgba(255,60,20,0.6));}
+  .hot-badge svg{width:36px;height:36px;}
+  .hot-label{font-size:.7rem;font-weight:700;letter-spacing:.5px;color:#ff7a3d;display:inline-flex;align-items:center;gap:4px;margin-bottom:4px;}
+  .hot-label svg{width:12px;height:12px;flex-shrink:0;}
+  .item-real-img{width:90%;height:90%;object-fit:contain;z-index:2;}
+  .item-body{padding:14px 16px 16px;}
+  .item-name{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .item-sub{font-size:.75rem;color:var(--muted);margin-bottom:10px;}
+  .item-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .item-price{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent);}
+
+  /* NÚT MUA */
+  .btn-buy-card {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent);
+    color: #0a0c14;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .btn-buy-card:hover {
+    background: var(--accent2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(232,160,32,0.2);
+  }
+  .btn-buy-card svg { fill: #0a0c14; }
+
+  /* FILTER BAR */
+  .filter-bar{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap;align-items:center;}
+  .search-input{background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 12px;font-family:'Be Vietnam Pro',sans-serif;font-size:.85rem;outline:none;min-width:160px;flex:1;max-width:240px;}
+  .search-input:focus{border-color:rgba(232,160,32,0.5);}
+  .search-input::placeholder{color:var(--muted);}
+
+  /* SET GRID */
+  .set-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;}
+  .set-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:all .25s;cursor:pointer;}
+  .set-card:hover{transform:translateY(-4px);box-shadow:0 10px 35px rgba(0,0,0,0.5);border-color:rgba(232,160,32,0.4);}
+  .set-preview{height:180px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#161a2c 0%,#202844 100%);position:relative;overflow:hidden;}
+  .set-preview::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(transparent,var(--card));}
+  .set-img{width:100%;height:100%;object-fit:cover;}
+  .set-header{padding:14px 18px 10px;}
+  .set-name{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:1px;color:var(--accent);margin-bottom:4px;}
+  .set-long-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:12px;height:38px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  
+  .set-items-preview-grid{padding:0 18px 16px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start;}
+  .set-piece-box{width:54px;height:54px;border-radius:8px;background:rgba(0,0,0,0.3);border:1px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:all .2s;flex:0 0 54px;}
+  .set-piece-box:hover{border-color:var(--accent);transform:scale(1.08);box-shadow:0 0 10px rgba(232,160,32,0.4);}
+  .set-piece-box img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+  .set-piece-tooltip{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.75);color:#fff;font-size:8px;text-align:center;padding:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;}
+
+  .set-footer{padding:0 18px 16px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(232,160,32,0.06);padding-top:12px;}
+  .set-original{font-size:.78rem;color:var(--muted);text-decoration:line-through;}
+  .set-price{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.25rem;color:var(--accent);}
+  .set-discount{font-size:.7rem;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(62,207,110,0.15);color:var(--green);border:1px solid rgba(62,207,110,0.25);}
+
+  /* MODAL */
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:200;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
+  .modal-overlay.open{display:flex;}
+  .modal{
+    background:
+      linear-gradient(var(--bg2),var(--bg2)) padding-box,
+      linear-gradient(135deg,#f5d38a 0%,#e8a020 35%,#8a5a10 60%,#f5d38a 100%) border-box;
+    border:2px solid transparent;
+    border-radius:18px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:24px;position:relative;
+    animation:fadeUp .2s ease;
+    box-shadow:0 0 0 1px rgba(232,160,32,0.15),0 10px 50px rgba(0,0,0,0.6),0 0 40px rgba(232,160,32,0.18);
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  .modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--muted);width:30px;height:30px;border-radius:6px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;}
+  .modal-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.4rem;color:var(--accent);margin-bottom:16px;letter-spacing:1px;}
+  
+  .modal-item-img-container{
+    position:relative;
+    background:linear-gradient(135deg,#161a2c,#202844);
+    border-radius:12px;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;height:200px;margin-bottom:16px;overflow:hidden;
+  }
+  .modal-item-img-container.theme-red::before,
+  .modal-item-img-container.theme-purple::before,
+  .modal-item-img-container.theme-gold::before{
+    content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(circle at 50% 50%, transparent 52%, rgba(0,0,0,0.55) 100%);
+  }
+  .modal-item-img-container.theme-red::after,
+  .modal-item-img-container.theme-purple::after,
+  .modal-item-img-container.theme-gold::after{
+    content:'';position:absolute;top:50%;left:50%;width:160%;height:160%;z-index:1;pointer-events:none;
+    transform:translate(-50%,-50%);
+  }
+  .modal-item-img-container.theme-red{
+    border-width:2px;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(230,50,60,0.42) 0%, rgba(230,50,60,0.12) 32%, transparent 65%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 26px),
+      linear-gradient(135deg,#2a0c10 0%,#3d1014 55%,#501218 100%);
+    border-color:rgba(255,90,90,0.6);
+    box-shadow:0 0 0 2px rgba(255,90,90,0.18),0 0 26px rgba(255,60,60,0.25),inset 0 0 40px rgba(255,60,60,0.12);
+  }
+  .modal-item-img-container.theme-red::after{
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(255,90,90,0.16) 35deg, transparent 90deg, transparent 190deg, rgba(255,255,255,0.06) 225deg, transparent 275deg, transparent 360deg);
+  }
+  .modal-item-img-container.theme-purple{
+    border-width:2px;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(160,90,240,0.40) 0%, rgba(160,90,240,0.12) 32%, transparent 65%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 26px),
+      linear-gradient(135deg,#1c0d33 0%,#2a1245 55%,#3a1860 100%);
+    border-color:rgba(200,140,255,0.6);
+    box-shadow:0 0 0 2px rgba(200,140,255,0.18),0 0 26px rgba(170,90,240,0.25),inset 0 0 40px rgba(170,90,240,0.12);
+  }
+  .modal-item-img-container.theme-purple::after{
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(200,140,255,0.16) 35deg, transparent 90deg, transparent 190deg, rgba(255,255,255,0.06) 225deg, transparent 275deg, transparent 360deg);
+  }
+  .modal-item-img-container.theme-gold{
+    border-width:2px;
+    background:
+      radial-gradient(circle at 50% 38%, rgba(255,210,80,0.65) 0%, rgba(255,170,40,0.22) 28%, transparent 60%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.045) 0px, rgba(255,255,255,0.045) 1px, transparent 1px, transparent 24px),
+      radial-gradient(circle at 20% 85%, rgba(255,150,20,0.12) 0%, transparent 40%),
+      linear-gradient(135deg,#140f04 0%,#241a06 45%,#3a2708 100%);
+    border-color:rgba(255,200,80,0.65);
+    box-shadow:0 0 0 2px rgba(255,200,80,0.18),0 0 26px rgba(255,170,40,0.3),inset 0 0 50px rgba(255,180,40,0.18);
+  }
+  .modal-item-img-container.theme-gold::after{
+    background:conic-gradient(from 0deg, transparent 0deg, rgba(255,225,150,0.26) 35deg, transparent 90deg, transparent 190deg, rgba(255,255,255,0.10) 225deg, transparent 275deg, transparent 360deg);
+  }
+  .modal-item-real-img{width:100%;height:100%;object-fit:contain;padding:10px;position:relative;z-index:2;}
+  .modal-set-img{width:100%;height:100%;object-fit:cover;}
+
+
+  .modal-items-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+  .modal-piece-card{width:68px;height:68px;border-radius:10px;background:rgba(0,0,0,0.4);border:1.5px solid var(--border);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+  .modal-piece-card:hover{border-color:var(--accent);transform:scale(1.08);box-shadow:0 0 10px rgba(232,160,32,0.4);}
+  .modal-piece-card img{width:100%;height:100%;object-fit:cover;cursor:zoom-in;}
+
+  /* VIDEO CONTAINER */
+  .video-container {
+    position: relative;width: 100%;padding-bottom: 56.25%;height: 0;overflow: hidden;
+    border-radius: 12px;border: 1px solid rgba(232,160,32,0.2);margin-bottom: 16px;background: #000;
+  }
+  .video-container iframe{position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;object-fit: cover;}
+  .modal-section-title {font-family: 'Be Vietnam Pro', sans-serif;font-weight: 600;font-size: 0.88rem;color: var(--accent);text-transform: uppercase;letter-spacing: 1px;margin: 14px 0 6px;}
+
+  /* LIGHTBOX CHỮ NHẬT CYBERPUNK */
+  .lightbox-overlay {
+    display: none;position: fixed;inset: 0;background: rgba(5, 6, 10, 0.88);z-index: 300;
+    align-items: center;justify-content: center;padding: 1.5rem;backdrop-filter: blur(8px);animation: fadeIn .2s ease;
+  }
+  .lightbox-overlay.open { display: flex; }
+  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  
+  .lightbox-container {
+    position: relative;background: #111422;border: 1px solid rgba(232, 160, 32, 0.4);border-radius: 16px;
+    padding: 24px;max-width: 420px;width: 100%;text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(232, 160, 32, 0.15);
+    animation: scaleUp .2s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  @keyframes scaleUp { from{transform:scale(0.9);opacity:0;} to{transform:scale(1);opacity:1;} }
+  
+  .lightbox-img-box {
+    width: 100%;aspect-ratio: 4/3;border-radius: 10px;background: linear-gradient(135deg, #161a2c 0%, #222a48 100%);
+    margin-bottom: 16px;overflow: hidden;border: 1px solid rgba(232, 160, 32, 0.15);display: flex;align-items: center;justify-content: center;
+  }
+  .lightbox-img-box img {width: 100%;height: 100%;object-fit: contain;padding: 12px;}
+  .lightbox-title {font-family: 'Be Vietnam Pro', sans-serif;font-weight: 700;font-size: 1.4rem;color: var(--accent);letter-spacing: 1px;margin-bottom: 6px;}
+  .lightbox-type {font-size: .85rem;color: var(--muted);text-transform: uppercase;letter-spacing: 1px;font-family: 'Be Vietnam Pro', sans-serif;}
+  
+  .lightbox-close {
+    position: absolute;top: 14px;right: 14px;width: 30px;height: 30px;border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);border: 1px solid rgba(232, 160, 32, 0.2);color: var(--muted);
+    cursor: pointer;display: flex;align-items: center;justify-content: center;font-size: 0.9rem;transition: all 0.2s;
+  }
+  .lightbox-close:hover {background: var(--red);color: #fff;border-color: transparent;}
+
+  /* CONTACT CHOICE POPUP */
+  .contact-overlay {
+    display:none;position:fixed;inset:0;background:rgba(5,6,10,0.88);z-index:300;
+    align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(8px);animation:fadeIn .2s ease;
+  }
+  .contact-overlay.open{display:flex;}
+  .contact-box{
+    position:relative;background:#111422;border:1px solid rgba(232,160,32,0.4);border-radius:16px;
+    padding:28px 24px 24px;max-width:380px;width:100%;text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.6),0 0 25px rgba(232,160,32,0.15);
+    animation:scaleUp .2s cubic-bezier(0.25,1,0.5,1);
+  }
+  .contact-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.3rem;color:var(--accent);letter-spacing:1px;margin-bottom:4px;}
+  .contact-sub{font-size:.82rem;color:var(--muted);margin-bottom:20px;}
+  .contact-options{display:flex;flex-direction:column;gap:12px;}
+  .contact-btn{
+    display:flex;align-items:center;gap:12px;padding:13px 18px;border-radius:10px;text-decoration:none;
+    font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.5px;color:#fff;
+    transition:all .2s;
+  }
+  .contact-btn span{flex:1;text-align:left;}
+  .contact-fb{background:linear-gradient(135deg,#4267B2,#5b8def);}
+  .contact-fb:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(66,103,178,0.35);}
+  .contact-tele{background:linear-gradient(135deg,#0088cc,#29b6f6);}
+  .contact-tele:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,136,204,0.35);}
+
+  .modal-details{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+  .modal-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:8px;border:1px solid rgba(232,160,32,0.08);}
+  .modal-price{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1.6rem;color:var(--accent);}
+  .modal-actions{display:flex;gap:10px;}
+  .modal-actions button, .modal-actions a{flex:1;padding:11px;border-radius:8px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:1px;text-transform:uppercase;border:none;transition:all .2s;text-align:center;text-decoration:none;}
+  .btn-confirm{background:var(--accent);color:#0a0c14;}
+  .btn-confirm:hover{background:var(--accent2);transform:translateY(-1px);}
+  .btn-cancel{background:var(--bg3);color:var(--muted);border:1px solid var(--border) !important;}
+
+  footer{border-top:1px solid var(--border);background:var(--bg2);padding:1.5rem 1rem;text-align:center;color:var(--muted);font-size:.8rem;}
+  footer span{color:var(--accent);}
+
+  @media(max-width:700px){
+    .items-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+    .set-grid{grid-template-columns:1fr;}
+    nav{display:none;}
+    .mobile-nav{display:flex !important;}
+    .header-inner{padding:0 .6rem;gap:.4rem;}
+    .logo{font-size:1.35rem;letter-spacing:0.5px;}
+    .header-right{gap:5px;}
+    .header-right a{padding:0;border-radius:50%;width:46px;height:46px;justify-content:center;flex-shrink:0;}
+    .header-right a svg{width:24px;height:24px;flex-shrink:0;}
+    .header-right a[href*="facebook"]{background:#4267B2 !important;border-color:#4267B2 !important;}
+    .header-right a[href*="t.me"]{background:#0088cc !important;border-color:#0088cc !important;}
+    .header-right a[href*="m.me"]{background:#4267B2 !important;border-color:#4267B2 !important;}
+    .header-right a svg path{fill:#fff !important;}
+    .header-right a span{display:none;}
+    .contact-box{max-width:320px;padding:22px 18px 18px;}
+    .contact-btn{padding:12px 14px;font-size:.92rem;}
+  }
+  @media(max-width:380px){
+    .logo{font-size:1.05rem;letter-spacing:0;}
+    .header-right a{width:40px;height:40px;}
+    .header-right a svg{width:21px;height:21px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+   <div class="logo">GenioX<span>Shipp</span></div>
+    <nav>
+      <a href="javascript:void(0)" class="active" data-tab="vip">VIP</a>
+      <a href="javascript:void(0)" data-tab="weapon">Vũ Khí</a>
+      <a href="javascript:void(0)" data-tab="armor">Giáp &amp; Mũ</a>
+      <a href="javascript:void(0)" data-tab="set">Set</a>
+      <a href="javascript:void(0)" data-tab="khac">Khác</a>
+    </nav>
+    <button class="menu-toggle" onclick="toggleMenu(event)" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="menu-dropdown" id="menuDropdown">
+    <div class="menu-section-title">Chuyên Mục</div>
+    <a href="javascript:void(0)" onclick="switchTab('vip');closeMenu();">VIP</a>
+    <a href="javascript:void(0)" onclick="switchTab('weapon');closeMenu();">Vũ Khí</a>
+    <a href="javascript:void(0)" onclick="switchTab('armor');closeMenu();">Giáp &amp; Mũ</a>
+    <a href="javascript:void(0)" onclick="switchTab('set');closeMenu();">Set</a>
+    <a href="javascript:void(0)" onclick="switchTab('khac');closeMenu();">Khác</a>
+    <hr>
+    <a href="https://sf2privateserver.com" target="_blank" id="downloadGameHeroLink">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f5b942" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Tải Game</span>
+    </a>
+    <hr>
+    <div class="menu-section-title">Liên Hệ</div>
+    <a href="https://www.facebook.com/dmanhGenio007" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#5b8def"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+      <span>Facebook</span>
+    </a>
+    <a href="https://t.me/GenioX007" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#29b6f6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.96-1.28 1.24c-.14.14-.26.26-.52.26l.18-2.68 4.76-4.3c.2-.18-.04-.28-.32-.1L7.6 14.96l-2.6-.82c-.56-.18-.58-.56.12-.82l10.16-3.92c.48-.16.9.12.76.8z"/></svg>
+      <span>Telegram</span>
+    </a>
+    <a href="https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#5b8def"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.16.61 4.18 1.67 5.9L2.99 22l4.24-1.35A9.97 9.97 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 13.5l-2.55-2.72-4.98 2.72L10.98 9l2.62 2.72L18.5 9 13 15.5z"/></svg>
+      <span>Messenger Group</span>
+    </a>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="javascript:void(0)" class="active" data-tab="vip">👑 VIP</a>
+    <a href="javascript:void(0)" data-tab="weapon">Vũ Khí</a>
+    <a href="javascript:void(0)" data-tab="armor"> Giáp &amp; Mũ</a>
+    <a href="javascript:void(0)" data-tab="set">🧩 Set</a>
+    <a href="javascript:void(0)" data-tab="khac">🎁 Khác</a>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>PRIVATE SERVER 2</h1>
+  <p></p>
+  <div class="hero-tags">
+    <a href="https://sf2privateserver.com" target="_blank" class="htag gold" id="downloadGameHeroLink" style="text-decoration:none;cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5b942" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Tải Game
+    </a>
+    <a href="https://t.me/GenioX007" target="_blank" class="htag blue" style="text-decoration:none;cursor:pointer;">
+ <svg width="16" height="16" viewBox="0 0 24 24" fill="#29b6f6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.96-1.28 1.24c-.14.14-.26.26-.52.26l.18-2.68 4.76-4.3c.2-.18-.04-.28-.32-.1L7.6 14.96l-2.6-.82c-.56-.18-.58-.56.12-.82l10.16-3.92c.48-.16.9.12.76.8z"/></svg>
+      Telegram
+    </a>
+    <a href="https://www.facebook.com/dmanhGenio007" target="_blank" class="htag blue" style="text-decoration:none;cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#5b8def"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+      Facebook
+    </a>
+    <a href="https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c" target="_blank" class="htag green" style="text-decoration:none;cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4ade80"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.16.61 4.18 1.67 5.9L2.99 22l4.24-1.35A9.97 9.97 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 13.5l-2.55-2.72-4.98 2.72L10.98 9l2.62 2.72L18.5 9 13 15.5z"/></svg>
+      Messenger
+    </a>
+  </div>
+</div>
+
+<main>
+  <section class="section active" id="sec-vip">
+    <div class="section-title">⚜️VIP</div>
+    <div class="vip-single">
+      <div class="vip-card-main" onclick="openVipModal('gold')">
+        <div class="vip-glow"></div>
+        <span class="vip-crown">⚜️</span>
+        <div class="vip-tier-label">S-VIP SUBSCRIPTION</div>
+        <div class="vip-tagline">Gói đầy đủ đặc quyền</div>
+        <div class="vip-price-row">
+          <span class="vip-big-price">10$</span>
+          <span class="vip-period">/ 30 Day </span>
+        </div>
+        <hr class="vip-divider">
+        <ul class="vip-perks">
+          <li>Monthly Battlepass (New Sets!)</li>
+          <li>Monthly New Weapon </li>
+          <li>ID Share With Friend</li>
+          <li>3x Rewards & Gems</li>
+          <li>Exclusive VIP Raids & Clan Bosses </li>
+          <li>Daily Quests </li>
+          <li>Shards Collectibles (Unlock Chests for Sets)</li>
+          <li>Premium Mysterybox (Exclusive Items) </li>
+          <li>Enhanced UI & Locations </li>
+          <li>Real-Time Damage Counter</li>
+        </ul>
+        <button class="btn-vip-main" onclick="event.stopPropagation();openVipModal('gold')">✦ ĐĂNG KÝ VIP NGAY</button>
+      </div>
+      <div class="vip-card-main silver" onclick="openVipModal('silver')">
+        <div class="vip-glow"></div>
+        <span class="vip-crown">💎</span>
+        <div class="vip-tier-label">VIP SUBSCRIPTION</div>
+        <div class="vip-tagline">Gói giá rẻ, nhập môn</div>
+        <div class="vip-price-row">
+          <span class="vip-big-price">5$</span>
+          <span class="vip-period">/ 30 Day </span>
+        </div>
+        <hr class="vip-divider">
+        <ul class="vip-perks">
+          <li>Monthly New Weapon</li>
+          <li>3x Rewards & Gems</li>
+          <li>Exclusive VIP Raids & Clan Bosses</li>
+          <li>Daily Quests</li>
+          <li>Real-Time Damage Counter</li>
+        </ul>
+        <button class="btn-vip-main" onclick="event.stopPropagation();openVipModal('silver')">✦ ĐĂNG KÝ NGAY</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-weapon">
+    <div class="section-title">Danh Sách Vũ Khí </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Tìm vũ khí..." id="searchInput" oninput="filterWeapons()">
+    </div>
+    <div class="items-grid" id="weaponGrid"></div>
+  </section>
+
+  <section class="section" id="sec-armor">
+    <div class="section-title">Giáp &amp; Mũ</div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Tìm giáp, mũ..." id="armorSearchInput" oninput="filterArmors()">
+    </div>
+    <div class="set-grid" id="armorGrid"></div>
+
+    <div class="section-title" style="margin-top:2rem;">🧷 Mảnh Lẻ</div>
+    <div class="items-grid" id="armorPieceGrid"></div>
+  </section>
+
+  <section class="section" id="sec-set">
+    <div class="section-title"> Danh Sách Set </div>
+    <div class="filter-bar">
+      <input type="text" class="search-input" placeholder="Tìm set..." id="setSearchInput" oninput="filterSets()">
+    </div>
+    <div class="set-grid" id="setGrid"></div>
+  </section>
+
+  <section class="section" id="sec-khac">
+    <div class="section-title"> Vật Phẩm Khác </div>
+    <div class="set-grid" id="khacGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <div>Year 2026<span> Private Server2</span> ·Mọi món đồ sẽ được gửi nếu gửi sai hoặc có vấn đề Lh Fb,Telegram để được hỗ trợ · Hỗ trợ 13h - 24h</div>
+  <div>Website chỉ để tham khảo</div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalIfOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="contact-overlay" id="contactOverlay" onclick="closeContactIfOutside(event)">
+  <div class="contact-box">
+    <button class="lightbox-close" onclick="closeContactChoice()">✕</button>
+    <div class="contact-title">Liên Hệ Đặt Mua</div>
+    <div class="contact-sub">Chọn kênh bạn muốn nhắn tin</div>
+    <div class="contact-options">
+      <a href="#" target="_blank" class="contact-btn contact-fb" id="contactFbLink">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+        <span>Nhắn qua Facebook</span>
+      </a>
+      <a href="#" target="_blank" class="contact-btn contact-tele" id="contactTeleLink">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.96-1.28 1.24c-.14.14-.26.26-.52.26l.18-2.68 4.76-4.3c.2-.18-.04-.28-.32-.1L7.6 14.96l-2.6-.82c-.56-.18-.58-.56.12-.82l10.16-3.92c.48-.16.9.12.76.8z"/></svg>
+        <span>Nhắn qua Telegram</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightboxIfOutside(event)">
+  <div class="lightbox-container">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-box">
+      <img id="lightboxImg" src="" alt="Mảnh vật phẩm">
+    </div>
+    <div class="lightbox-title" id="lightboxTitle">Tên Mảnh</div>
+    <div class="lightbox-type" id="lightboxType">Loại Vật Phẩm</div>
+  </div>
+</div>
+
+<script>
+const TELEGRAM_URL = "https://t.me/GenioX007"; 
+const FACEBOOK_URL = "https://www.facebook.com/dmanhGenio007";
+
+// MẢNG VŨ KHÍ 
+// theme: 'theme-purple',theme-purple → Epic Amethyst (tím)
+// theme: 'theme-gold', theme-gold → Legendary Gold (vàng)
+// theme: 'theme-red', theme-red → Mythic Crimson (đỏ)
+const weapons = [
+  { 
+    name:'Incisive Scarlet', 
+    type:'Tonfa', 
+    price:'7,5$', featured: true, hot: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/IncisiveScarlet/IncisiveScarlet.webp', 
+    desc:'Sắc đỏ rực rỡ, lưỡi kiếm sắc bén.Combo có thể gây chí mạng.',
+    video:'public/image/mucvukhi/IncisiveScarlet/cachsudungtonfa.mp4' 
+  },
+  { 
+    name:'Void Pearl', 
+    type:'Cận Chiến', 
+    price:'7,5$', featured: true, hot: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/VoidPearl/Void Pearl.webp', 
+    desc:'void pearl, một vũ khí huyền bí với sức mạnh vô tận. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
+    video:'public/image/mucvukhi/VoidPearl/videovoidpearl.mp4' 
+  },
+  { 
+    name:'Burning Promises', 
+    type:'Katana', 
+    price:'10$', featured: true, hot: true,
+    theme: 'theme-red',
+    image: 'public/image/mucvukhi/BurningPromises/BurningPromises.png', 
+    desc:'Thanh katana với sức mạnh lửa cháy không ngớt. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
+    video:'public/image/mucvukhi/BurningPromises/AbilityKatana.mp4' 
+  },
+  { 
+    name:'God Eater', 
+    type:'Glaive', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/God Eater.png', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Ashes of Generation', 
+    type:'Katana', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Ashes of Generation.png', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Dance of Static', 
+    type:'Nunchaku', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Dance of Static.png', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Imhotep Axes', 
+    type:'Axes', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Imhotep Axes.webp', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Lilys Heart', 
+    type:'Katana', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Lilys Heart.png', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Iris Warblade', 
+    type:'Axes', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Iris Warblade.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Sparks Of Prometheus', 
+    type:'Pneumo Fists', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Sparks Of Prometheus.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Bear Paws', 
+    type:'Knuckles', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Bear Paws.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Dragon Knuckles', 
+    type:'Knuckles', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Dragon Knuckles.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Shadow Banes', 
+    type:'Sickles', 
+    price:'8$', 
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Shadow Banes.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Scorpion Sting', 
+    type:'Knuckles', 
+    price:'8$', featured: true, 
+     theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Scorpion Sting.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+   name:'Azure Shards', 
+    type:'Knuckles', 
+    price:'5$', featured: true, 
+     theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Azure Shards.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+   name:'Crabs Fusion', 
+    type:'Knuckles', 
+    price:'5$', featured: true, 
+     theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Crabs Fusion.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+   name:'Ox Katars', 
+    type:'Katars', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Ox Katars.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+   name:'Shadow Lord', 
+    type:'Composite Sword', 
+    price:'5$', featured: true,
+    theme: 'theme-purple', 
+    image: 'public/image/mucvukhi/Shadow Lord.webp', 
+    desc:'',
+    video:''  
+  },
+  { 
+    name:'Spider-king Knuckles', 
+    type:'Knuckles', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Spider-king Knuckles.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Spark Of Rage (Magic)', 
+    type:'Magic', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Spark Of Rage (Magic).webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+   name:'Flames of Wrath (Magic)', 
+    type:'Magic', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Flames of Wrath (Magic).webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Amethyst Tonfas', 
+    type:'Tonfas', 
+    price:'5$', featured: true, 
+    theme: 'theme-purple',
+    image: 'public/image/mucvukhi/Amethyst Tonfas.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Orders Oath', 
+    type:'Claws', 
+    price:'5$', featured: true,
+    theme: 'theme-purple', 
+    image: 'public/image/mucvukhi/Orders Oath.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Striking Falcon', 
+    type:'Kusarigama', 
+    price:'5$', featured: true,
+    theme: 'theme-purple', 
+    image: 'public/image/mucvukhi/Striking Falcon.webp', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Alien Slime', 
+    type:'Tonfas', 
+    price:'8$', featured: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Alien Slime.webp', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Void Blade', 
+    type:'Kusarigama', 
+    price:'8$', featured: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Void Blade.webp', 
+    desc:'',
+    video:'' 
+  },
+   { 
+    name:'Scarlet Vengeance', 
+    type:'Katana', 
+    price:'8$', featured: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Scarlet Vengeance.webp', 
+    desc:'',
+    video:'' 
+  },
+  { 
+    name:'Coming soon', 
+    type:'', 
+    price:'', 
+    theme: 'theme-gold', 
+    image: 'public/image/set/set-Unknown/UnknownSet.img_weapon_unknown.png', 
+    desc:'',
+    video:'' 
+  },
+];
+
+
+
+
+// DANH SÁCH GIÁP & MŨ (mỗi món gồm 2 mảnh )
+//original:'5$', price:'5$', discount:'0%', hot: true
+const armors = [
+  {
+    name:'Heavy Epic Set',
+    image: 'public/image/giapmu/SetGiapMu/AoMuShades/AoMuShades1.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'Mũ', type:'Mũ', img:'public/image/giapmu/SetGiapMu/AoMuShades/PaidEquipments2.img_helm_ruthless_general.png'},
+      {name:'Áo Giáp', type:'Giáp', img:'public/image/giapmu/SetGiapMu/AoMuShades/PaidEquipments2.img_armor_sovereign.png'},
+    ],
+    price:'10$', 
+  },
+
+  {
+    name:'Heavy Legendary Set',
+    image: 'public/image/giapmu/SetGiapMu/AoMuShadesVang/AoMuShadesVang.png',
+    longDesc:'',
+    video:'',
+     pieces:[
+      {name:'Mũ', type:'Mũ', img:'public/image/giapmu/SetGiapMu/AoMuShadesVang/PaidEquipments.img_helm_golden_demon_mask.png'},
+      {name:'Áo Giáp', type:'Giáp', img:'public/image/giapmu/SetGiapMu/AoMuShadesVang/PaidEquipments.img_armor_hell_gate.png'},
+    ],
+    price:'10$', hot: true
+  },
+   
+  {
+    name:'Light Legendary Set',
+    image: 'public/image/giapmu/SetGiapMu/AoMuShadesxanh/AoMuShadesXanh.png',
+    longDesc:'',
+    video:'',
+     pieces:[
+      {name:'Mũ', type:'Mũ', img:'public/image/giapmu/SetGiapMu/AoMuShadesxanh/PaidEquipments.img_helm_monk_heritage.png'},
+      {name:'Áo Giáp', type:'Giáp', img:'public/image/giapmu/SetGiapMu/AoMuShadesxanh/PaidEquipments.img_armor_sound_of_silence.png'},
+    ],
+    price:'10$', hot: true
+  },
+
+  {
+    name:'Sailor Set',
+    image: 'public/image/giapmu/SetGiapMu/AoMuShadesSailor/SailorSet_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'Mũ', type:'Mũ', img:'public/image/giapmu/SetGiapMu/AoMuShadesSailor/SailorSet.img_helm_sailor.png'},
+      {name:'Áo Giáp', type:'Giáp', img:'public/image/giapmu/SetGiapMu/AoMuShadesSailor/SailorSet.img_armor_sailor.png'},
+       {name:'Vũ Khí', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/AoMuShadesSailor/SailorSet.img_weapon_sailor.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Futurist',
+    image: 'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'GlitchMask', type:'Mũ', img:'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet.img_helm_futurist.png'},
+      {name:'Crimson Hunter', type:'Giáp', img:'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet.img_armor_futurist.png'},
+      {name:'Hadronic Decay', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet.img_weapon_futurist.png'},
+      {name:'Furious Maria', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet.img_ranged_futurist.png'},
+      {name:'Plasma Cutter', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/FuturistAoMu/FuturistSet.img_magic_futurist.png'},
+    ],
+    price:'15$',
+  },
+
+  {
+    name:'Cyber Dragon',
+    image: 'public/image/giapmu/SetGiapMu/Cyber Dragon/Cyberdragon_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Cyber Dragon/CyberDragonSet.img_helm_cyber_dragon.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Cyber Dragon/CyberDragonSet.img_weapon_cyber_dragon.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/Cyber Dragon/CyberDragonSet.img_magic_cyber_dragon.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Fall 2014',
+    image: 'public/image/giapmu/SetGiapMu/Fall2024/fall24_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Fall2024/Fall2024Set.img_helm_fall24.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Fall2024/Fall2024Set.img_weapon_fall24_scythe.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Fall2024/Fall2024Set.img_weapon_fall24_sickles.png'},      
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Forest Demon',
+    image: 'public/image/giapmu/SetGiapMu/ForestDemon/forest_demon_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/ForestDemon/ForestDemonSet.img_helm_forest_demon.png'},  
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/ForestDemon/ForestDemonSet.img_weapon_forest_demon.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/ForestDemon/ForestDemonSet.img_magic_forest_demon.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Halloween 2015',
+    image: 'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_helm_hw15_pumpkin.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_helm_hw15_witch.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_armor_hw15_wicked_veil.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_weapon_hw15_broom.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_weapon_hw15_scythe.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Halloween2015/Halloween2015Set.img_ranged_hw15_skull.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Halloween 2016',
+    image: 'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_helm_hw16_pumpkin.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_helm_hw16_witch.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_armor_hw16_mantle.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_weapon_hw16_scythe.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_weapon_hw16_sickles.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Halloween2016/Halloween2016Set.img_ranged_hw16_bat.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Halloween 2020',
+    image: 'public/image/giapmu/SetGiapMu/Halloween2020/Halloween2020_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Halloween2020/Halloween2020Set.img_helm_baron.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Halloween2020/Halloween2020Set.img_armor_baron.png'},   
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Halloween2020/Halloween2020Set.img_ranged_skulls.png'},     
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2015',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set.img_helm_xmas14_santa.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set.img_helm_xmas14_horns.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set.img_armor_xmas14_santa.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set.img_weapon_xmas14_canes.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2015/NewYear2015Set.img_ranged_xmas14_snowballs.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2016',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016Set.img_helm_xmas15_horns.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016Set.img_helm_xmas15_santa.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016Set.img_armor_xmas15_santa.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016Set.img_weapon_xmas15_canes.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2016/NewYear2016Set.img_ranged_xmas15_snowballs.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2020',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.helm_xmas19_horns.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.helm_xmas19_santa.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.armor_xmas19_santa.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.weapon_xmas19_candy.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.weapon_xmas19_glaive.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.ranged_xmas19_cookie.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/NewYear2020/NewYear2020Set_1.magic_xmas19_iceball.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2020 (2)',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set2_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.helm_ny19_hat.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.armor_ny19_mantle.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.weapon_ny19_mace.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.weapon_ny19_axes.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.ranged_ny19_donut.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/NewYear2020V2/NewYear2020Set_2.magic_ny19_snowball.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2021',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.helm_ny21_bread.png'},
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.helm_ny21_ice.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.armor_ny21_cuirass.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.weapon_icefruit_knuckles.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.ranged_snowfall_shurikens.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/NewYear2021/NewYear2021Set.magic_snow_globe.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'New Year 2024',
+    image: 'public/image/giapmu/SetGiapMu/NewYear2024/Newyear2024_banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/NewYear2024/NewYear2024Set.helm_shako.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/NewYear2024/NewYear2024Set.armor_viking_clothes.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/NewYear2024/NewYear2024Set.weapon_musket.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/NewYear2024/NewYear2024Set.ranged_berserk_axes.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/NewYear2024/NewYear2024Set.magic_cold_aura.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Revenant',
+    image: 'public/image/giapmu/SetGiapMu/Revenant/Revenant_banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Revenant/RevenantSet.img_helm_revenant.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Revenant/RevenantSet.img_armor_revenant.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Revenant/RevenantSet.img_weapon_revenant.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/Revenant/RevenantSet.img_magic_revenant.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Summer 2021',
+    image: 'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.helm_summer21_santa.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.armor_kimono.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.armor_summer21_santa.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.weapon_summer21_sword.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.weapon_trident.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Summer2021/Summer2021Set.ranged_ancient_chakram.png'},   
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Summer 2025',
+    image: 'public/image/giapmu/SetGiapMu/Summer2025/Summer2025Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Summer2025/Summer2025Set.img_helm_street_tempest.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Summer2025/Summer2025Set.img_armor_hoodie.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Summer2025/Summer2025Set.img_weapon_moon_oath.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Summer2025/Summer2025Set.img_weapon_urban_predator.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Valentine 2017',
+    image: 'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017_Set_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_helm_val17_wings.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_armor_val17_mantle.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_weapon_val17_fans.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_weapon_val17_sai.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_weapon_val17_trident.png'},
+      {name:'', type:'Vũ Khí Tầm Xa', img:'public/image/giapmu/SetGiapMu/Valantine2017/Valentine2017Set.img_ranged_val17_axe.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Valentine 2018',
+    image: 'public/image/giapmu/SetGiapMu/Valentine2018/valentine2018_banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Mũ', img:'public/image/giapmu/SetGiapMu/Valentine2018/Valentine2018Set.img_helm_val18_panda.png'},
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Valentine2018/Valentine2018Set.img_armor_val18_hoodie.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Valentine2018/Valentine2018Set.img_weapon_val18_panda.png'},
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Woman 2024',
+    image: 'public/image/giapmu/SetGiapMu/Woman2024/womanday_Banner.png',
+    longDesc:'',
+    video:'',
+    pieces:[
+      {name:'', type:'Giáp', img:'public/image/giapmu/SetGiapMu/Woman2024/WomanDay2024Set.armor_march_8.png'},
+      {name:'', type:'Vũ Khí', img:'public/image/giapmu/SetGiapMu/Woman2024/WomanDay2024Set.fans_march_8.png'},
+      {name:'', type:'Phép Thuật', img:'public/image/giapmu/SetGiapMu/Woman2024/WomanDay2024Set.magic_march_8.png'},
+    ],
+    price:'10$',
+  },
+];
+
+
+// MẢNH LẺ (Áo/Giáp/Mũ bán riêng, giống kiểu vũ khí)
+const armorPieces = [
+  {
+    name:'Seed of Creation',
+    type:'Magic',
+    price:'5$', featured: false,
+    theme: 'theme-purple',
+    image: 'public/image/giapmu/BanLe/Seed of Creation.png',
+    desc:'',
+    video:''
+  },
+   
+  {
+    name:'Song of the Tide',
+    type:'Magic',
+    price:'5$', featured: false,
+    theme: 'theme-purple',
+    image: 'public/image/giapmu/BanLe/Song of the Tide.png',
+    desc:'',
+    video:''
+  },
+
+  {
+    name:'Tender Tempest',
+    type:'Magic',
+    price:'5$', featured: false,
+    theme: 'theme-purple',
+    image: 'public/image/giapmu/BanLe/Tender Tempest.png',
+    desc:'',
+    video:''
+  },
+];
+
+
+// DANH SÁCH SET - MỖI SET ĐỦ ĐÚNG 5 MẢNH
+//original:'15$', price:'15$', discount:'0%', hot: true
+const sets = [
+  {
+    name:'Revival',
+    image: 'public/image/set/set-revival/anhgioithieurevival.jpg',
+    longDesc:'Tấn công đối thủ để kích hoạt ngọn lửa chữa lành giúp phục hồi máu của bạn theo thời gian. Đòn đánh của bạn sẽ trở nên mạnh hơn chừng nào ngọn lửa chữa lành còn tồn tại. Nó sẽ biến mất (hoặc giảm hiệu ứng) nếu bạn bị trúng đòn.',
+    items:[
+      {name:'Mask of Honor', type:'Mảnh Đầu', img:'public/image/set/set-revival/HELM_C2_Z4_REVIVAL.webp'},
+      {name:'Authority', type:'Mảnh Thân', img:'public/image/set/set-revival/ARMOR_C2_Z4_REVIVAL.webp'},
+      {name:'Divine Slasher', type:'Vũ Khí', img:'public/image/set/set-revival/WEAPON_C2_Z4_REVIVAL_NAGINATA.webp'},
+      {name:'Shooting Stars', type:'Vũ Khí Từ Xa', img:'public/image/set/set-revival/RANGED_C2_Z4_REVIVAL_SHURIKEN.webp'},
+      {name:'Firmaments Punishment', type:'Phép Thuật', img:'public/image/set/set-revival/MAGIC_C2_Z4_REVIVAL_SKYFIST.webp'}
+    ],
+      price:'15$', hot: true
+  },
+
+  {
+    name:'Devious Snow',
+    image: 'public/image/set/set-snow/anhgioithieusnow.jpg', 
+    longDesc:'Đánh dấu các đối thủ của bạn bằng một cú đánh chí mạng. Sau vài giây, một cột tuyết sẽ tấn công đối thủ đã được đánh dấu, gây cho họ một số lượng lớn sát thương!',
+    video:'',   
+    items:[
+      {name:'Frost Beard', type:'Mảnh Đầu', img:'public/image/set/set-snow/Helm_xmas16_santa.webp'},
+      {name:'Winter Breath Jacket', type:'Mảnh Thân', img:'public/image/set/set-snow/Armor_xmas16_santa.webp'},
+      {name:'Candy Rage', type:'Vũ Khí', img:'public/image/set/set-snow/Weapon_xmas16_candy.webp'},
+      {name:'Gingerbread Surprises', type:'Vũ Khí Tầm Xa', img:'public/image/set/set-snow/Ranged_xmas16_cookie.webp'},
+      {name:'Shard of Eternal Ice', type:'Phép Thuật', img:'public/image/set/set-snow/Magic_xmas16_iceball.webp'}
+    ],
+      price:'15$',
+  },
+
+  {
+    name:'Warlock',
+    image: 'public/image/set/set-warlock/anhgioithieuwarlock.jpg',
+    longDesc:'Đánh trúng kẻ địch để bao phủ chúng trong sự sa đọa, gây sát thương theo thời gian.',
+    items:[
+      {name:'Face of Tragedy', type:'Mảnh Đầu', img:'public/image/set/set-warlock/muwarlock.webp'},
+      {name:'Evening Sunset', type:'Mảnh Thân', img:'public/image/set/set-warlock/aowarlock.webp'},
+      {name:'Shepherds Staff', type:'Vũ Khí', img:'public/image/set/set-warlock/vukhiwarlock.webp'},
+      {name:'Morning Star', type:'Vũ Khí Từ Xa', img:'public/image/set/set-warlock/vukhituxawarlock.webp'},
+      {name:'Sloe Thorn', type:'Phép Thuật', img:'public/image/set/set-warlock/magicwarlock.webp'}
+    ],
+    price:'15$',
+  },
+
+  {
+    name:'Forest Guardian',
+    image: 'public/image/set/set-forestGuardian/anhgioithieuforestGuardian.jpg',
+    longDesc:'Tăng hiệu quả của các phép hồi máu và tạo giáp hộ mệnh lên đồng đội xung quanh thêm 30%.',
+    items:[
+      {name:'Heartwood', type:'Mảnh Đầu', img:'public/image/set/set-forestGuardian/NewYear2022.img_head_forest_spirit_new_year_2021.webp'},
+      {name:'Deathfall', type:'Mảnh Thân', img:'public/image/set/set-forestGuardian/NewYear2022.img_armor_forest_spirit_new_year_2022.webp'},
+      {name:'Beasts Fury	', type:'Vũ Khí', img:'public/image/set/set-forestGuardian/NewYear2022.img_weapon_claws_new_year_2021.webp'},
+      {name:'Martens Bite', type:'Vũ Khí Từ Xa', img:'public/image/set/set-forestGuardian/NewYear2022.img_ranged_im_hooks_new_year_2021.webp'},
+      {name:'Death Grip', type:'Phép Thuật', img:'public/image/set/set-forestGuardian/NewYear2022.img_magic_root_new_year_22.webp'}
+    ],
+    price:'15$'
+  },
+
+  {
+    name:'Roaring Luminary',
+    image: 'public/image/set/set-volcano/anhgioithieuvolcano.jpg',
+  longDesc:'Gây thành công những cú đánh liên tiếp vào đối thủ để triệu tập những vũng lava trong toàn bộ khu vực. Khi đứng trên chúng, bạn sẽ không thể bị phá vỡ các khối của kẻ thù với những thiệt hại lớn! Tăng cơ hội gây ra cú đánh quyết định.',
+    items:[
+      {name:'Burning Wreath', type:'Mảnh Đầu', img:'public/image/set/set-volcano/muvolcano.webp'},
+      {name:'Ash Whisper', type:'Mảnh Thân', img:'public/image/set/set-volcano/aogiapvolcano.webp'},
+      {name:'Phoenix Song', type:'Vũ Khí', img:'public/image/set/set-volcano/kiemvolcano.webp'},
+      {name:'Dragons Tear', type:'Vũ Khí Từ Xa', img:'public/image/set/set-volcano/vukhitamxavolcano.webp'},
+      {name:'Roaring Caldera', type:'Phép Thuật', img:'public/image/set/set-volcano/magicvolcano.webp'}
+    ],
+    price:'15$',
+  },
+
+  {
+    name:'Cordyceps',
+    image: 'public/image/set/set-fungus/anhgioithieufungus.jpg', 
+    longDesc:'Tiếp tục đánh vào đối thủ của bạn cho đến khi nó tạo ra một bào tử trên họ. Một khi bào tử được tạo ra trên họ, nó sẽ truyền cho bạn sức sống của họ.',
+    items:[
+      {name:'All-Seeing Eye', type:'Mảnh Đầu', img:'public/image/set/set-fungus/Helm_fungus_set.webp'},
+      {name:'Mycelium Guardian', type:'Mảnh Thân', img:'public/image/set/set-fungus/Armor_fungus_set.webp'},
+      {name:'Guardians Wrath', type:' Vũ Khí', img:'public/image/set/set-fungus/Weapon_fungus_set.webp'},
+      {name:'Spore Carriers', type:'Vũ Khí Tầm Xa', img:'public/image/set/set-fungus/Ranged_fungus_set.webp'},
+      {name:'Spores of Discord', type:'Phép Thuật', img:'public/image/set/set-fungus/FungusSet.img_magic_fungus24.webp'}
+    ],
+    price:'15$',
+  },
+  
+  {
+    name:'Karcer',
+    image: 'public/image/set/set-karcer/anhgioithieukarcer.jpg',
+    longDesc:'Đánh dấu đối thủ bằng cách đánh trúng liên tiếp, điều này sẽ giúp bạn tăng sát thương gây ra và hồi lại lượng máu của mình.Gia tăng 12% tỷ lệ né tránh đòn đánh vật lý từ đối thủ, đồng thời tăng sát thương đòn đánh kế tiếp sau khi né thành công.',
+    items:[
+      {name:'Comatosis', type:'Mảnh Đầu', img:'public/image/set/set-karcer/KarcerSet.img_helm_karcer25.webp'},
+      {name:'Lethargy', type:'Mảnh Thân', img:'public/image/set/set-karcer/KarcerSet.img_armor_karcer25.webp'},
+      {name:'Claws of Perversity', type:'Vũ Khí', img:'public/image/set/set-karcer/KarcerSet.img_weapon_claws_karcer25.webp'},
+      {name:'Snake Reaper', type:'Vũ Khí Từ Xa', img:'public/image/set/set-karcer/KarcerSet.img_ranged_chakram_karcer25.webp'},
+      {name:'Mandibula', type:'Phép Thuật', img:'public/image/set/set-karcer/KarcerSet.img_magic_hunger_claws_karcer25.webp'}
+    ],
+    price:'15$',
+  },
+
+   {
+    name:'Henchmen',
+    image: 'public/image/set/set-wave/anhgioithieuwave.jpg',
+    longDesc:'Tích lũy sức mạnh của Vortex trong vòng 3 giây sau khi đánh vào đối thủ của bạn. Một khi bạn đã thu thập được sức mạnh, bạn có thể phóng ra Cleansing Wave bằng cách nhấn nút kỹ năng, gây sát thương phép cho đối thủ của bạn và kéo họ đi xa.',
+    items:[
+      {name:'Face of the Storm', type:'Mảnh Đầu', img:'public/image/set/set-wave/muwave.webp'},
+      {name:'Captains Overcoat', type:'Mảnh Thân', img:'public/image/set/set-wave/aowave.webp'},
+      {name:'Sea Slashers', type:'Vũ Khí', img:'public/image/set/set-wave/vukhiwave.webp'},
+      {name:'Poacher', type:'Vũ Khí Từ Xa', img:'public/image/set/set-wave/vukhituxawave.webp'},
+      {name:'Deep Waters Curse', type:'Phép Thuật', img:'public/image/set/set-wave/magicwave.webp'}
+    ],
+     price:'15$', 
+  },
+
+  {
+    name:'Cybermania Set',
+    image: 'public/image/set/set-spark/anhgioithieuspark.jpg',
+    longDesc:'Công nghệ tiên tiến của Simon cho phép bạn thả mìn, tăng sát thương từ vũ khí, giật điện đối thủ, hoặc bắn những tia laser mạnh mẽ từ Vệ tinh Tử thần.',
+    items:[
+      {name:'Enigmatic Headgear', type:'Mảnh Đầu', img:'public/image/set/set-spark/muspark.webp'},
+      {name:'Soldier of the Zenith', type:'Mảnh Thân', img:'public/image/set/set-spark/aospark.webp'},
+      {name:'Blade of Disorder', type:'Vũ Khí', img:'public/image/set/set-spark/vukhispark.webp'},
+      {name:'Peacemakers', type:'Vũ Khí Từ Xa', img:'public/image/set/set-spark/vukhitusaspark.webp'},
+      {name:'Core Impulse', type:'Phép Thuật', img:'public/image/set/set-spark/magicspark.webp'}
+    ],
+      price:'15$',
+  },
+
+  {
+    name:'Wolf',
+    image: 'public/image/set/set-wolf/anhgioithieuwolf.jpg',
+    longDesc:'Tấn công đối thủ bằng vũ khí khiến chúng bị chảy máu bởi Laceration. Laceration làm đối thủ mất máu khi chúng di chuyển.',
+    items:[
+      {name:'Law of the Pack', type:'Mảnh Đầu', img:'public/image/set/set-wolf/muwolf.webp'},
+      {name:'Leaders Oath', type:'Mảnh Thân', img:'public/image/set/set-wolf/aowolf.webp'},  
+      {name:'Drevars Heart', type:'Vũ Khí', img:'public/image/set/set-wolf/vukhiwolf.webp'},
+      {name:'Silver Tooth', type:'Vũ Khí Từ Xa', img:'public/image/set/set-wolf/vukhituxasoi.webp'}
+    ],
+    price:'15$',
+  },
+
+  {
+    name:'Torturous Nightmare',
+    image: 'public/image/set/set-torturousnightmare/anhgioithieutorturousnightmare.png',
+    longDesc:'Đòn đánh của bạn sẽ gây trạng thái Chảy máu (Bleeding) lên đối thủ, khiến chúng mất máu theo thời gian và giảm sát thương của đòn tấn công kế tiếp từ boss.',
+    items:[
+      {name:'Airwalker', type:'Mảnh Đầu', img:'public/image/set/set-torturousnightmare/musettn.webp'},
+      {name:'Utopian Glow', type:'Mảnh Thân', img:'public/image/set/set-torturousnightmare/aosettn.webp'},
+      {name:'Fireflies', type:'Vũ Khí', img:'public/image/set/set-torturousnightmare/vukhisettn.webp'},     
+    ],
+    price:'15$', hot:true
+  },
+
+  {
+    name:'Vampire Lord',
+    image: 'public/image/set/set-vampire/anhgioithieusetvampire.jpg',
+    longDesc:'Cuộc tấn công bằng vũ khí có 50% cơ hội gây chảy máu cho đối thủ trong 3 giây. Có thể làm mới mỗi giây; họ nhận 10% sát thương thực. Mỗi lần đối thủ bị sát thương từ chảy máu, bạn sẽ nhận được 1 stack. Nếu stack đạt 10, bạn có thể sử dụng Bloody Harvest.',
+    items:[
+      {name:'Bloodwing', type:'Mảnh Đầu', img:'public/image/set/set-vampire/VampireLordSet.img_helm_vampire_lord.png'},
+      {name:'Crimson Thirst', type:'Mảnh Thân', img:'public/image/set/set-vampire/VampireLordSet.img_armor_vampire_lord.png'},
+      {name:'Call of the Cursed', type:'Vũ Khí', img:'public/image/set/set-vampire/VampireLordSet.img_weapon_vampire_lord.png'},
+      {name:'Blood Spit', type:'Vũ Khí Từ Xa', img:'public/image/set/set-vampire/VampireLordSet.img_ranged_vampire_lord.png'},
+     
+    ],
+    price:'15$',
+  },
+
+  {
+    name:'Aztec',
+    image: 'public/image/set/set-aztec/anhgioithieu aztec.jpg',
+    longDesc:'Các cuộc tấn công của bạn sẽ định kỳ triệu tập một chùm sáng, và bạn sẽ tích lũy ít năng lượng ma thuật hơn.Cuộc tấn công ma thuật đầu tiên của bạn sẽ tung ra một loạt các chùm sáng và cấp cho bạn Hào quang ánh sáng, giúp giảm sát thương từ các cuộc tấn công và phục hồi sức khỏe cho bạn trong 12 giây',
+    items:[
+      {name:'Face of Metztli', type:'Mảnh Đầu', img:'public/image/set/set-aztec/Helm_face_of_metztli.webp'},
+      {name:'Ancestral Pride', type:'Mảnh Thân', img:'public/image/set/set-aztec/Armor_ancestral_pride.webp'},
+      {name:'Judges Cleaver', type:'Vũ Khí', img:'public/image/set/set-aztec/Vukhiaztec.webp'},
+      {name:'Pain Bound', type:'Vũ Khí Từ Xa', img:'public/image/set/set-aztec/Ranged_pain_bound.webp'},
+      {name:'Redemptive Gift', type:'Phép Thuật', img:'public/image/set/set-aztec/Magic_redemptive_gift.webp'}
+    ],
+    price:'15$',
+  },
+  
+//
+//Set10$
+//
+  {
+    name:'Frostbite',
+    image: 'public/image/set/set-sugerwaden/anhgioithieusetsugerwaden.jpg',
+    longDesc:'Tích lũy đủ số cộng dồn để đóng băng đối thủ. Trong trạng thái này, đối thủ sẽ bị chảy máu trong 3 giây tiếp theo. Phá vỡ trạng thái đóng băng sẽ gây ra một lượng sát thương khổng lồ!',
+    items:[
+     {name:'Fur Ear-Flap', type:'Mảnh Đầu', img:'public/image/set/set-sugerwaden/musugerwarden.webp'},
+      {name:'Padded Jacket', type:'Mảnh Thân', img:'public/image/set/set-sugerwaden/aosugerwarden.webp'},     
+      {name:'Surprise Waffles', type:'Vũ Khí', img:'public/image/set/set-sugerwaden/vukhisugerwarden.webp'},
+      {name:'Juicy Donut', type:'Vũ Khí Từ Xa', img:'public/image/set/set-sugerwaden/vukhituxasugerwarden.webp'},
+      {name:'Sugar Flash', type:'Phép Thuật', img:'public/image/set/set-sugerwaden/magicsugerwaden.webp'}
+    ],
+    price:'10$',
+  },
+  
+  {
+    name:'Squall',
+    image: 'public/image/set/set-squall/anhgioithieusetsquall.jpg',
+    longDesc:'Khi bạn đánh vào chân đối thủ (đá hạ/low kick), một cơn gió lốc sẽ thổi bay và làm ngã chúng. Bạn có thể bồi thêm một đòn đánh cực mạnh khi chúng đang ngã.',
+    items:[
+      {name:'Furious Bull', type:'Mảnh Đầu', img:'public/image/set/set-squall/musetsquall.webp'},
+      {name:'Shamans Whisper', type:'Mảnh Thân', img:'public/image/set/set-squall/aosetsquall.webp'},
+      {name:'Wolfs Grin', type:'Vũ Khí', img:'public/image/set/set-squall/vukhisetsquall.webp'},
+      {name:'Tears of the Wind', type:'Vũ Khí Từ Xa', img:'public/image/set/set-squall/vukhituxasetsquall.webp'},
+      {name:'Eye of the Storm', type:'Phép Thuật', img:'public/image/set/set-squall/magicsetsquall.webp'}
+    ],
+    price:'10$'
+  },
+
+  {
+    name:'Mirror World',
+    image: 'public/image/set/set-mirrorworld/anhgioithieumirrorworld.png',
+    longDesc:'Tấn công trúng đích để tích lũy thanh nộ. Khi đầy nộ, bạn sẽ tung ra một đòn đánh chí mạng (critical) với sát thương tăng cao và được hồi một lượng máu.',
+    items:[
+      {name:'Baroness Cylinder', type:'Mảnh Đầu', img:'public/image/set/set-mirrorworld/mumonkdo.webp'},
+      {name:'Voodoo Vest', type:'Mảnh Thân', img:'public/image/set/set-mirrorworld/aomonkdo.webp'},
+      {name:'Deaths Jaw', type:'Vũ Khí', img:'public/image/set/set-mirrorworld/vukhimonkdo.webp'},
+      {name:'Cursed Pins', type:'Vũ Khí Từ Xa', img:'public/image/set/set-mirrorworld/vukhituxamonkdo.webp'},
+      {name:'Dark Blood Magic', type:'Phép Thuật', img:'public/image/set/set-mirrorworld/magicmonkdo.webp'}
+    ],
+    price:'10$'
+  },
+
+  {
+    name:'Skanda Karma',
+    image: 'public/image/set/set-karma/anhgioithieusetkarma.png',
+    longDesc:'Đánh combo để nhận hiệu ứng bổ trợ (buff). Combo càng lớn hiệu ứng càng mạnh. Nếu máu thấp sẽ được hồi máu; nếu đầy máu sẽ tăng sát thương nhưng đổi lại bị trừ bớt máu.',
+    items:[
+      {name:'Crown of Kali', type:'Mảnh Đầu', img:'public/image/set/set-karma/mukarma.webp'},
+      {name:'Heart of Kshatriya', type:'Mảnh Thân', img:'public/image/set/set-karma/aokarma.webp'},
+      {name:'Rage of Indra', type:'Vũ Khí', img:'public/image/set/set-karma/vukhikarma.webp'},
+      {name:'Sky Shard', type:'Vũ Khí Từ Xa', img:'public/image/set/set-karma/vukhituxakarma.webp'},
+      {name:'Kundalini', type:'Phép Thuật', img:'public/image/set/set-karma/magickarma.webp'}
+    ],
+   price:'10$'
+  },
+
+  {
+    name:'Prototype Sakura',
+    image: 'public/image/set/set-sakura/anhgioithieusetsakura.jpg',
+    longDesc:'Mỗi đòn đánh trúng mục tiêu liên tục sẽ cộng dồn 3% tốc độ đánh, tối đa lên tới 30% tốc độ.',
+    items:[
+      {name:'Blossom Mask',type:'Mảnh Đầu', img:'public/image/set/set-sakura/musakura.webp'},
+      {name:'Sakura Phantom', type:'Mảnh Thân', img:'public/image/set/set-sakura/aosakura.webp'},
+      {name:'Iron Foliage', type:'Vũ Khí', img:'public/image/set/set-sakura/vukhisakura.webp'},
+      {name:'Petal Thrower', type:'Vũ Khí Từ Xa', img:'public/image/set/set-sakura/vukhisakura.webp'},
+      {name:'Thorn Dome', type:'Phép Thuật', img:'public/image/set/set-sakura/magicsakura.webp'}
+    ],
+   price:'10$',
+  },
+
+  {
+    name:'Stone Fetters',
+    image: 'public/image/set/set-dragon/anhgioithieudragonset.jpg',
+    longDesc:'Làm rung chuyển mặt đất bằng Cơn thịnh nộ và giải phóng Cơn giận dữ của Trái đất lên đối thủ của bạn!',
+    items:[
+      {name:'Gaze of Terror', type:'Mảnh Đầu', img:'public/image/set/set-dragon/mudragon.webp'},
+      {name:'Rebellious Scales', type:'Mảnh Thân', img:'public/image/set/set-dragon/aodragon.webp'},
+      {name:'Dragons Fangs', type:'Vũ Khí', img:'public/image/set/set-dragon/vukhidragon.webp'},
+      {name:'Doom Claw', type:'Vũ Khí Từ Xa', img:'public/image/set/set-dragon/vukhituxadragon.webp'},
+      {name:'Earths Wrath', type:'Phép Thuật', img:'public/image/set/set-dragon/magicdragon.webp'}
+    ],
+    price:'8$',
+  },
+];
+
+
+
+// DANH SÁCH "KHÁC" - HÀNH ĐỘNG, MẢNH SET RIÊNG, ĐỒ LINH TINH
+//price:'5$', hot: true
+const others = [
+  {
+    name:'Hành Động Hồ Sơ',
+    image: 'public/image/muckhac/HDSanhHermit.jpg',
+    longDesc:'Ngồi xuống và tạo dáng với tư thế ngồi thiền, thể hiện sự bình yên và tập trung trong tâm hồn.',   
+    pieces:[
+      {name:'Ngồi Thiền', type:'Hành Động', img:'public/image/muckhac/HDSanhHermit.jpg'},
+    ],
+     price:'5$',
+  },
+
+  {
+    name:'Hành Động Hồ Sơ',
+    image: 'public/image/muckhac/HDSanhAztec.jpg',
+    longDesc:'Bay lên và tạo dáng với đôi cánh Aztec, thể hiện sự mạnh mẽ và quyền lực của bản thân.',   
+    pieces:[
+      {name:'Bay Aztec', type:'Hành Động', img:'public/image/muckhac/HDSanhAztec.jpg'},
+    ],
+     price:'5$',
+  },
+
+  {
+    name:'Set Drakaina',
+    image: 'public/image/muckhac/SetDrakaina.png',
+    longDesc:'Drakaina phóng ra một luồng lốc xoáy đỏ rực lửa xung quanh mình, sau đó bay lơ lửng và dùng sức mạnh điều khiển vật thể từ xa xoay tròn những thanh kiếm theo chiều ngang. Cô ta lao về phía trước với tốc độ cao trong khi xoay tròn theo chiều ngang cùng với cơn lốc xoáy. Người chơi sẽ chịu sát thương nếu chạm phải những thanh kiếm đang bay. Bản thân Drakaina sẽ trở nên miễn nhiễm với các đòn tấn công cận chiến khi ở bên trong cơn lốc xoáy.',
+    video:'public/image/muckhac/SkillDrakaina.mp4',
+    pieces:[
+      {name:'X', type:'Mũ', img:'public/image/set/set-Unknown/UnknownSet.img_helm_unknown.png'},
+      {name:'Y', type:'Thân', img:'public/image/set/set-Unknown/UnknownSet.img_armor_unknown.png'},
+      {name:'Z', type:'Vũ Khí', img:'public/image/set/set-Unknown/UnknownSet.img_weapon_unknown.png'}
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Set Tenebris',
+    image: 'public/image/muckhac/SetTenebris.webp',
+    longDesc:'Tenebris tích tụ năng lượng trong giây lát, rồi phóng ra một luồng tia sáng tím hủy diệt từ cơ thể, gây ra sát thương và hất văng người chơi. Tenebris sẽ miễn nhiễm với các đòn tấn công cận chiến khi sử dụng khả năng này.',
+    video:'public/image/muckhac/SkillTenebris.mp4',
+    pieces:[
+      {name:'X', type:'Mũ', img:'public/image/set/set-Unknown/UnknownSet.img_helm_unknown.png'},
+      {name:'Y', type:'Thân', img:'public/image/set/set-Unknown/UnknownSet.img_armor_unknown.png'},
+      {name:'Z', type:'Vũ Khí', img:'public/image/set/set-Unknown/UnknownSet.img_weapon_unknown.png'}
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Set The Blackness',
+    image: 'public/image/muckhac/SetBlackness.webp',
+    longDesc:'Bóng Tối có thể tạo ra một làn sóng năng lượng hắc ám dưới dạng một bàn tay khổng lồ từ phía sau người chơi.',
+    video:'',
+    pieces:[
+      {name:'X', type:'Mũ', img:'public/image/set/set-Unknown/UnknownSet.img_helm_unknown.png'},
+      {name:'Y', type:'Thân', img:'public/image/set/set-Unknown/UnknownSet.img_armor_unknown.png'},
+      {name:'Z', type:'Vũ Khí', img:'public/image/set/set-Unknown/UnknownSet.img_weapon_unknown.png'}
+    ],
+    price:'10$',
+  },
+
+  {
+    name:'Set Stalker',
+    image: 'public/image/muckhac/SetStalker.png',
+    longDesc:' Stalker có thể nhảy lên một trong hai bức tường, mọc cánh và phóng mình lên, bay sang phía bên kia đấu trường trong khi đâm người chơi bằng móng vuốt. ',
+    video:'public/image/muckhac/SkillStalker.mp4',
+    pieces:[
+      {name:'X', type:'Mũ', img:'public/image/set/set-Unknown/UnknownSet.img_helm_unknown.png'},
+      {name:'Y', type:'Thân', img:'public/image/set/set-Unknown/UnknownSet.img_armor_unknown.png'},
+      {name:'Z', type:'Vũ Khí', img:'public/image/set/set-Unknown/UnknownSet.img_weapon_unknown.png'}
+    ],
+    price:'10$',
+  },
+   
+  {
+    name:'Colored Name + Emoji',
+    image: 'public/image/muckhac/Doiten5.jpg',
+    longDesc:'Đổi tên nhân vật và màu của bạn trong game, thêm icon thú vị làm nổi bật tên của bạn.',
+    video:'',
+    pieces:[],
+    price:'5$', hot:true
+  },
+
+  {
+    name:'Colored ID + Emoji',
+    image: 'public/image/muckhac/DoiID.jpg',
+    longDesc:'Đổi ID và thêm màu yêu thích của bạn trong game, thêm icon thú vị làm nổi bật ID của bạn.',
+    video:'',
+    pieces:[],
+    price:'5$',
+  },
+
+  {
+    name:'Colored Clan Name + Emoji',
+    image: 'public/image/muckhac/DoiTenClan.jpg',
+    longDesc:'Đổi tên và màu tên Clan của bạn trong game, thêm icon thú vị làm nổi bật tên của Clan.',
+    video:'',
+    pieces:[],
+    price:'5$',
+  },
+
+  {
+    name:'Prefix',
+    image: 'public/image/muckhac/Prefix.jpg',
+    longDesc:'[    ] Tiền tố đặc biệt cho tên nhân vật của bạn, giúp bạn nổi bật hơn trong cộng đồng game.',
+    video:'',
+    pieces:[],
+    price:'5$',
+  },
+
+  {
+    name:'Key ',
+    image: 'public/image/muckhac/keyvang.webp',
+    longDesc:'Mua để nhận ngay 50Key Emberlord',
+    video:'',
+    pieces:[],
+    price:'5$',
+  },
+
+  {
+    name:'Rương Charges',
+    image: 'public/image/muckhac/Ruongitem5$.png',
+    longDesc:'Phù hợp cho những người mới chơi ,Mua để nhận ngay 1500 Large, 1500 Medium và 1500 Small',
+    video:'',
+    pieces:[],
+    price:'5$',
+  },
+];
+
+function renderOthers(list) {
+  const data = list || others;
+  const grid = document.getElementById('khacGrid');
+  grid.innerHTML = data.map((o) => {
+    const i = others.indexOf(o);
+    const piecesHtml = o.pieces && o.pieces.length ? `
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div class="set-items-preview-grid">
+        ${o.pieces.map((it, itemIdx) => `
+          <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomOtherPiece(${i}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>` : '';
+    return `<div class="set-card" onclick="openOtherModal(${i})">
+      <div class="set-preview">
+        <img class="set-img" src="${o.image}" alt="${o.name}">
+      </div>
+      <div class="set-header">
+        ${o.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
+        <div class="set-name">${o.name}</div>
+        <div class="set-long-desc">${o.longDesc}</div>
+      </div>
+      ${piecesHtml}
+      <div class="set-footer">
+        <div>
+          <div class="set-price">${o.price}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <a href="javascript:void(0)" class="btn-buy-card" onclick="event.stopPropagation();openContactChoice();">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+            <span>Mua</span>
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function zoomOtherPiece(otherIdx, pieceIdx) {
+  const item = others[otherIdx].pieces[pieceIdx];
+  document.getElementById('lightboxImg').src = item.img;
+  document.getElementById('lightboxImg').alt = item.name;
+  document.getElementById('lightboxTitle').textContent = item.name;
+  document.getElementById('lightboxType').textContent = `Loại: ${item.type}`;
+  const lb = document.getElementById('lightboxOverlay');
+  lb.style.display = 'flex';
+  lb.classList.add('open');
+}
+
+function openOtherModal(idx) {
+  const o = others[idx];
+  const videoHtml = o.video ? `
+    <div class="modal-section-title">Video Hướng Dẫn & Review</div>
+    <div class="video-container">
+      <iframe src="${o.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  ` : '';
+  const piecesHtml = o.pieces && o.pieces.length ? `
+    <div style="margin-bottom:14px">
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Chi tiết bên trong</div>
+      <div class="modal-items-grid">
+        ${o.pieces.map((it, itemIdx) => `
+          <div class="modal-piece-card" title="${it.name}" onclick="zoomOtherPiece(${idx}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>` : '';
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title">${o.name}</div>
+    <div class="modal-item-img-container" style="padding:0;">
+      <img class="modal-set-img" src="${o.image}" alt="${o.name}">
+    </div>
+    <div class="modal-details">${o.longDesc}</div>
+    ${videoHtml}
+    ${piecesHtml}
+    <div class="modal-price-row">
+      <div><div class="modal-price">${o.price}</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Mua Ngay</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function renderWeapons(list) {
+  const grid = document.getElementById('weaponGrid');
+  grid.innerHTML = list.map((w,i) => `
+    <div class="item-card" onclick="openWeaponModal(${weapons.indexOf(w)})">
+      <div class="item-img-wrap ${w.theme || 'theme-purple'}">
+         <img src="${w.image}" class="item-real-img" alt="${w.name}">
+      </div>
+      <div class="item-body">
+        ${w.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
+        <div class="item-name">${w.name}</div>
+        <div class="item-sub">${w.type}</div>
+        <div class="item-footer">
+          <div class="item-price">${w.price}</div>
+          <a href="javascript:void(0)" class="btn-buy-card" onclick="event.stopPropagation();openContactChoice();">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+            <span>Mua</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterWeapons() {
+  const txt = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = weapons.filter(w => w.name.toLowerCase().includes(txt) || w.type.toLowerCase().includes(txt));
+  renderWeapons([...filtered].sort((a,b) => getPriceValue(b.price) - getPriceValue(a.price)));
+}
+
+function renderArmors(list) {
+  const grid = document.getElementById('armorGrid');
+  grid.innerHTML = list.map((a) => {
+    const idx = armors.indexOf(a);
+    return `<div class="set-card" onclick="openArmorModal(${idx})">
+      <div class="set-preview">
+        <img class="set-img" src="${a.image}" alt="${a.name}">
+      </div>
+      <div class="set-header">
+        ${a.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
+        <div class="set-name">${a.name}</div>
+        <div class="set-long-desc">${a.longDesc}</div>
+      </div>
+
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div class="set-items-preview-grid">
+        ${a.pieces.map((it, itemIdx) => `
+          <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomArmorPiece(${idx}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="set-footer">
+        <div>
+          <div class="set-price">${a.price}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <a href="javascript:void(0)" class="btn-buy-card" onclick="event.stopPropagation();openContactChoice();">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+            <span>Mua</span>
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterArmors() {
+  const txt = document.getElementById('armorSearchInput').value.toLowerCase();
+  const filtered = sortWeaponsPriceShuffled(armors.filter(a => a.name.toLowerCase().includes(txt)));
+  renderArmors(filtered);
+}
+
+function zoomArmorPiece(armorIdx, pieceIdx) {
+  const item = armors[armorIdx].pieces[pieceIdx];
+  document.getElementById('lightboxImg').src = item.img;
+  document.getElementById('lightboxImg').alt = item.name;
+  document.getElementById('lightboxTitle').textContent = item.name;
+  document.getElementById('lightboxType').textContent = `Loại: ${item.type}`;
+  const lb = document.getElementById('lightboxOverlay');
+  lb.style.display = 'flex';
+  lb.classList.add('open');
+}
+
+function openArmorModal(idx) {
+  const a = armors[idx];
+  const videoHtml = a.video ? `
+    <div class="modal-section-title">Video Hướng Dẫn &amp; Review</div>
+    <div class="video-container">
+      <iframe src="${a.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  ` : '';
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title"> ${a.name}</div>
+    <div class="modal-item-img-container" style="padding:0;">
+      <img class="modal-set-img" src="${a.image}" alt="${a.name}">
+    </div>
+    <div class="modal-details">${a.longDesc}</div>
+    ${videoHtml}
+    <div style="margin-bottom:14px">
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Áo + Giáp đi kèm</div>
+      <div class="modal-items-grid">
+        ${a.pieces.map((it, itemIdx) => `
+          <div class="modal-piece-card" title="${it.name}" onclick="zoomArmorPiece(${idx}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="modal-price-row">
+      <div><div style="font-size:.78rem;color:var(--muted)">Giá cả bộ:</div><div class="modal-price">${a.price}</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Mua Cả Bộ</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function renderArmorPieces(list) {
+  const grid = document.getElementById('armorPieceGrid');
+  grid.innerHTML = list.map((p) => `
+    <div class="item-card" onclick="openArmorPieceModal(${armorPieces.indexOf(p)})">
+      <div class="item-img-wrap ${p.theme || 'theme-purple'}">
+         <img src="${p.image}" class="item-real-img" alt="${p.name}">
+      </div>
+      <div class="item-body">
+        ${p.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
+        <div class="item-name">${p.name}</div>
+        <div class="item-sub">${p.type}</div>
+        <div class="item-footer">
+          <div class="item-price">${p.price}</div>
+          <a href="javascript:void(0)" class="btn-buy-card" onclick="event.stopPropagation();openContactChoice();">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+            <span>Mua</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openArmorPieceModal(idx) {
+  const p = armorPieces[idx];
+  const videoHtml = p.video ? `
+    <div class="modal-section-title">Video Hướng Dẫn &amp; Review</div>
+    <div class="video-container">
+      <iframe src="${p.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  ` : '';
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title">${p.name}</div>
+    <div class="modal-item-img-container">
+      <img src="${p.image}" class="modal-item-real-img" alt="${p.name}">
+    </div>
+    <div class="modal-section-title"> Mô tả vật phẩm</div>
+    <div class="modal-details">${p.desc}</div>
+    ${videoHtml}
+    <div class="modal-price-row">
+      <div>
+        <div style="font-size:.78rem;color:var(--muted)">Giá bán:</div>
+        <div class="modal-price">${p.price}</div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Mua Ngay</a>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function renderSets(list) {
+  const data = list || sets;
+  const grid = document.getElementById('setGrid');
+  grid.innerHTML = data.map((s) => {
+    const idx = sets.indexOf(s);
+    return `<div class="set-card" onclick="openSetModal(${idx})">
+      <div class="set-preview">
+        <img class="set-img" src="${s.image}" alt="${s.name}">
+      </div>
+      <div class="set-header">
+        ${s.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
+        <div class="set-name">${s.name}</div>
+        <div class="set-long-desc">${s.longDesc}</div>
+      </div>
+      
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div class="set-items-preview-grid">
+        ${s.items.map((it, itemIdx) => `
+          <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomPiece(${idx}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="set-footer">
+        <div>
+          <div class="set-price">${s.price}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <a href="javascript:void(0)" class="btn-buy-card" onclick="event.stopPropagation();openContactChoice();">
+            <svg width="13" height="13" viewBox="0 0 24 24">
+              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+            <span>Mua</span>
+          </a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterSets() {
+  const txt = document.getElementById('setSearchInput').value.toLowerCase();
+  const filtered = sortWeaponsPriceShuffled(sets.filter(s => s.name.toLowerCase().includes(txt)));
+  renderSets(filtered);
+}
+
+function zoomPiece(setIdx, itemIdx) {
+  const item = sets[setIdx].items[itemIdx];
+  document.getElementById('lightboxImg').src = item.img;
+  document.getElementById('lightboxImg').alt = item.name;
+  document.getElementById('lightboxTitle').textContent = item.name;
+  document.getElementById('lightboxType').textContent = `Loại: ${item.type}`;
+  
+  const lb = document.getElementById('lightboxOverlay');
+  lb.style.display = 'flex';
+  lb.classList.add('open');
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightboxOverlay');
+  lb.style.display = 'none';
+  lb.classList.remove('open');
+}
+
+function closeLightboxIfOutside(e) {
+  if (e.target === document.getElementById('lightboxOverlay')) closeLightbox();
+}
+
+function openContactChoice() {
+  document.getElementById('contactFbLink').href = FACEBOOK_URL;
+  document.getElementById('contactTeleLink').href = TELEGRAM_URL;
+  document.getElementById('contactOverlay').classList.add('open');
+  document.getElementById('contactOverlay').style.display = 'flex';
+}
+function closeContactChoice() {
+  document.getElementById('contactOverlay').classList.remove('open');
+  document.getElementById('contactOverlay').style.display = 'none';
+}
+function closeContactIfOutside(e) {
+  if (e.target === document.getElementById('contactOverlay')) closeContactChoice();
+}
+
+function openWeaponModal(idx) {
+  const w = weapons[idx];
+  const videoHtml = w.video ? `
+    <div class="modal-section-title"> Video Hướng Dẫn & Review</div>
+    <div class="video-container">
+      <iframe src="${w.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  ` : '';
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title"> ${w.name}</div>
+    <div class="modal-item-img-container ${w.theme || 'theme-gold'}">
+      <img src="${w.image}" class="modal-item-real-img" alt="${w.name}">
+    </div>
+    <div class="modal-section-title"> Mô tả vật phẩm</div>
+    <div class="modal-details">${w.desc}</div>
+    ${videoHtml}
+    <div class="modal-price-row">
+      <div>
+        <div style="font-size:.78rem;color:var(--muted)">Giá bán:</div>
+        <div class="modal-price">${w.price}</div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Mua Ngay</a>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+const vipTiers = {
+  gold: {
+    title: '⚜️ VIP SUBSCRIPTION ⚜️',
+    desc: 'Đăng ký ngay gói VIP để nhận đầy đủ các đặc quyền và các Item giới hạn độc quyền.',
+    price: '10$'
+  },
+  silver: {
+    title: '💎 VIP SUBSCRIPTION 💎',
+    desc: 'Gói VIP giá rẻ, phù hợp cho người mới bắt đầu, vẫn nhận thêm reward và daily quest hấp dẫn.',
+    price: '5$'
+  }
+};
+
+function openVipModal(tier) {
+  const v = vipTiers[tier] || vipTiers.gold;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title">${v.title}</div>
+    <div class="modal-details">${v.desc}</div>
+    <div class="modal-price-row">
+      <div>
+        <div style="font-size:.78rem;color:var(--muted)">Giá gói:</div>
+        <div class="modal-price">${v.price} <span style="font-size:0.9rem;color:var(--muted)">/ 30 ngày</span></div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Đăng ký ngay</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function openSetModal(idx) {
+  const s = sets[idx];
+  const videoHtml = s.video ? `
+    <div class="modal-section-title">Video Hướng Dẫn & Review</div>
+    <div class="video-container">
+      <iframe src="${s.video}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  ` : '';
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-title">🧩 ${s.name}</div>
+    <div class="modal-item-img-container" style="padding:0;">
+      <img class="modal-set-img" src="${s.image}" alt="${s.name}">
+    </div>
+    <div class="modal-details">${s.longDesc}</div>
+    ${videoHtml}
+    <div style="margin-bottom:14px">
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Danh sách 5 mảnh</div>
+      <div class="modal-items-grid">
+        ${s.items.map((it, itemIdx) => `
+          <div class="modal-piece-card" title="${it.name}" onclick="zoomPiece(${idx}, ${itemIdx})">
+            <img src="${it.img}" alt="${it.name}">
+            <div class="set-piece-tooltip">${it.name}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    <div class="modal-price-row">
+      <div><div class="modal-price">${s.price}</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Hủy</button>
+      <a href="javascript:void(0)" class="btn-confirm" onclick="closeModal();openContactChoice();">✔ Mua Set Ngay</a>
+    </div>`;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { 
+  document.getElementById('modalContent').innerHTML = '';
+  document.getElementById('modalOverlay').classList.remove('open'); 
+}
+function closeModalIfOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function getPriceValue(priceStr) {
+  return parseFloat(String(priceStr).replace('$','').replace(',','.')) || 0;
+}
+
+function sortWeaponsPriceShuffled(list) {
+  const hot = shuffleArray(list.filter(w => w.hot)).sort((a,b) => getPriceValue(b.price) - getPriceValue(a.price));
+  const featured = shuffleArray(list.filter(w => w.featured && !w.hot)).sort((a,b) => getPriceValue(b.price) - getPriceValue(a.price));
+  const rest = shuffleArray(list.filter(w => !w.featured && !w.hot)).sort((a,b) => getPriceValue(b.price) - getPriceValue(a.price));
+  return [...hot, ...featured, ...rest];
+}
+
+function toggleMenu(e) {
+  e.stopPropagation();
+  document.getElementById('menuDropdown').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('menuDropdown').classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  const dd = document.getElementById('menuDropdown');
+  const btn = document.querySelector('.menu-toggle');
+  if (dd.classList.contains('open') && !dd.contains(e.target) && !btn.contains(e.target)) {
+    closeMenu();
+  }
+});
+
+function switchTab(tab) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+tab).classList.add('active');
+  document.querySelectorAll('nav a,.mobile-nav a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.tab===tab);
+  });
+  if (tab === 'set') {
+    renderSets(sortWeaponsPriceShuffled(sets));
+  }
+  if (tab === 'weapon') {
+    renderWeapons(sortWeaponsPriceShuffled(weapons));
+  }
+  if (tab === 'armor') {
+    renderArmors(sortWeaponsPriceShuffled(armors));
+    renderArmorPieces(sortWeaponsPriceShuffled(armorPieces));
+  }
+  if (tab === 'khac') {
+    renderOthers(sortWeaponsPriceShuffled(others));
+  }
+}
+document.querySelectorAll('nav a,.mobile-nav a').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();switchTab(a.dataset.tab);});
+});
+
+renderWeapons(sortWeaponsPriceShuffled(weapons));
+renderArmors(sortWeaponsPriceShuffled(armors));
+renderArmorPieces(sortWeaponsPriceShuffled(armorPieces));
+renderSets(sortWeaponsPriceShuffled(sets));
+renderOthers(sortWeaponsPriceShuffled(others));
+</script>
+</body>
+</html>
