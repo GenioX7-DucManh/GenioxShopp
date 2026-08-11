@@ -577,6 +577,16 @@ const FACEBOOK_URL = "https://www.facebook.com/GenioX007";
 // theme: 'theme-gold', theme-gold → Legendary Gold (vàng)
 // theme: 'theme-red', theme-red → Mythic Crimson (đỏ)
 const weapons = [
+
+  { 
+    name:'Eye Of The Crimson Dawn', 
+    type:'', 
+    price:'7,5$', featured: true, hot: true,
+    theme: 'theme-gold',
+    image: 'public/image/mucvukhi/Eye Of The Crimson Dawn/Eye Of The Crimson Dawn.webp', 
+    desc:'Vũ khí này có khả năng đặc biệt như bất khả xâm nhập và gây choáng, gây ra rất nhiều sát thương trong các cuộc đột kích',
+    video:'public/image/mucvukhi/Eye Of The Crimson Dawn/Skill EyeOfTheCrimson Dawn.mp4' 
+  },
   { 
     name:'Incisive Scarlet', 
     type:'Tonfa', 
@@ -1215,7 +1225,7 @@ const sets = [
       {name:'Shooting Stars', type:'Vũ Khí Từ Xa', img:'public/image/set/set-revival/RANGED_C2_Z4_REVIVAL_SHURIKEN.webp'},
       {name:'Firmaments Punishment', type:'Phép Thuật', img:'public/image/set/set-revival/MAGIC_C2_Z4_REVIVAL_SKYFIST.webp'}
     ],
-      price:'15$', hot: true
+      price:'15$', 
   },
 
   {
@@ -1286,7 +1296,7 @@ const sets = [
       {name:'Spore Carriers', type:'Vũ Khí Tầm Xa', img:'public/image/set/set-fungus/Ranged_fungus_set.webp'},
       {name:'Spores of Discord', type:'Phép Thuật', img:'public/image/set/set-fungus/FungusSet.img_magic_fungus24.webp'}
     ],
-    price:'15$',
+    price:'15$', hot:true
   },
   
   {
@@ -1300,7 +1310,7 @@ const sets = [
       {name:'Snake Reaper', type:'Vũ Khí Từ Xa', img:'public/image/set/set-karcer/KarcerSet.img_ranged_chakram_karcer25.webp'},
       {name:'Mandibula', type:'Phép Thuật', img:'public/image/set/set-karcer/KarcerSet.img_magic_hunger_claws_karcer25.webp'}
     ],
-    price:'15$',
+    price:'15$', hot:true
   },
 
    {
@@ -1527,7 +1537,7 @@ const others = [
     name:'Set The Blackness',
     image: 'public/image/muckhac/SetBlackness.webp',
     longDesc:'Bóng Tối có thể tạo ra một làn sóng năng lượng hắc ám dưới dạng một bàn tay khổng lồ từ phía sau người chơi.',
-    video:'',
+    video:'public/image/muckhac/Skill TheBlackNess.mp4',
     pieces:[
       {name:'X', type:'Mũ', img:'public/image/set/set-Unknown/UnknownSet.img_helm_unknown.png'},
       {name:'Y', type:'Thân', img:'public/image/set/set-Unknown/UnknownSet.img_armor_unknown.png'},
