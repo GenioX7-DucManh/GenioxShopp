@@ -44,6 +44,14 @@
   .hero p{color:var(--muted);font-size:.95rem;letter-spacing:1px;}
   .hero-tags{display:flex;gap:10px;justify-content:center;margin-top:1.1rem;flex-wrap:wrap;}
   .htag{font-size:.78rem;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:8px 18px;border-radius:24px;border:1px solid;display:inline-flex;align-items:center;gap:7px;backdrop-filter:blur(6px);}
+
+  /* CONTACT PILLS - Glassmorphism */
+  .contact-pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:14px;text-decoration:none;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,0.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.14);transition:all .25s;}
+  .contact-pill:hover{background:rgba(255,255,255,0.11);transform:translateY(-2px);border-color:rgba(255,255,255,0.25);}
+  .contact-pill.p-gold{border-color:rgba(245,185,66,0.35);}
+  .contact-pill.p-blue{border-color:rgba(41,182,246,0.35);}
+  .contact-pill.p-green{border-color:rgba(74,222,128,0.35);}
+  .contact-pill.p-red{border-color:rgba(255,60,60,0.35);}
   .htag.gold{color:var(--accent2);border-color:rgba(232,160,32,0.4);background:linear-gradient(135deg,rgba(232,160,32,0.16),rgba(232,160,32,0.03));box-shadow:0 4px 16px rgba(232,160,32,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
   .htag.blue{color:#a9d4ff;border-color:rgba(74,158,255,0.4);background:linear-gradient(135deg,rgba(74,158,255,0.16),rgba(74,158,255,0.03));box-shadow:0 4px 16px rgba(74,158,255,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
   .htag.green{color:#8ff0b3;border-color:rgba(62,207,110,0.4);background:linear-gradient(135deg,rgba(62,207,110,0.16),rgba(62,207,110,0.03));box-shadow:0 4px 16px rgba(62,207,110,0.14),inset 0 1px 0 rgba(255,255,255,0.06);}
@@ -73,6 +81,7 @@
   .vip-card-main:hover{transform:translateY(-4px);box-shadow:0 16px 50px rgba(232,160,32,0.2);}
   .vip-glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.15) 0%,transparent 70%);}
   .vip-crown{font-size:3rem;margin-bottom:10px;display:block;}
+  .icon-badge{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative;z-index:1;}
   .vip-tier-label{font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:2rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);text-shadow:0 0 30px rgba(232,160,32,0.5);}
   .vip-tagline{color:var(--muted);font-size:.9rem;margin:6px 0 20px;letter-spacing:1px;}
   .vip-price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;}
@@ -375,7 +384,8 @@
   <div class="header-inner">
    <div class="logo">GenioX<span>Shipp</span></div>
     <nav>
-      <a href="javascript:void(0)" class="active" data-tab="vip">VIP</a>
+      <a href="javascript:void(0)" class="active" data-tab="trangchu">Trang Chủ</a>
+      <a href="javascript:void(0)" data-tab="vip">VIP</a>
       <a href="javascript:void(0)" data-tab="weapon">Vũ Khí</a>
       <a href="javascript:void(0)" data-tab="armor">Giáp &amp; Mũ</a>
       <a href="javascript:void(0)" data-tab="set">Set</a>
@@ -387,6 +397,7 @@
   </div>
   <div class="menu-dropdown" id="menuDropdown">
     <div class="menu-section-title">Chuyên Mục</div>
+    <a href="javascript:void(0)" onclick="switchTab('trangchu');closeMenu();">Trang Chủ</a>
     <a href="javascript:void(0)" onclick="switchTab('vip');closeMenu();">VIP</a>
     <a href="javascript:void(0)" onclick="switchTab('weapon');closeMenu();">Vũ Khí</a>
     <a href="javascript:void(0)" onclick="switchTab('armor');closeMenu();">Giáp &amp; Mũ</a>
@@ -411,13 +422,18 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="#5b8def"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.16.61 4.18 1.67 5.9L2.99 22l4.24-1.35A9.97 9.97 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 13.5l-2.55-2.72-4.98 2.72L10.98 9l2.62 2.72L18.5 9 13 15.5z"/></svg>
       <span>Messenger Group</span>
     </a>
+    <a href="https://youtube.com/@dmanhhgeniox7sf2?si=PJHdJ4beMA_BI8QN" target="_blank" id="youtubeMenuLink">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff3b3b"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4L15.8 12z"/></svg>
+      <span>YouTube</span>
+    </a>
   </div>
   <div class="mobile-nav" id="mobileNav">
-    <a href="javascript:void(0)" class="active" data-tab="vip">👑 VIP</a>
+    <a href="javascript:void(0)" class="active" data-tab="trangchu"> Trang Chủ</a>
+    <a href="javascript:void(0)" data-tab="vip">👑 VIP</a>
     <a href="javascript:void(0)" data-tab="weapon">Vũ Khí</a>
     <a href="javascript:void(0)" data-tab="armor"> Giáp &amp; Mũ</a>
-    <a href="javascript:void(0)" data-tab="set">🧩 Set</a>
-    <a href="javascript:void(0)" data-tab="khac">🎁 Khác</a>
+    <a href="javascript:void(0)" data-tab="set">Set</a>
+    <a href="javascript:void(0)" data-tab="khac">Khác</a>
   </div>
 </header>
 
@@ -425,27 +441,99 @@
   <h1>PRIVATE SERVER 2</h1>
   <p></p>
   <div class="hero-tags">
-    <a href="https://sf2privateserver.com" target="_blank" class="htag gold" id="downloadGameHeroLink" style="text-decoration:none;cursor:pointer;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5b942" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <a href="https://sf2privateserver.com" target="_blank" class="contact-pill p-gold" id="downloadGameHeroLink">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f5b942" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Tải Game
     </a>
-    <a href="https://t.me/GenioX007" target="_blank" class="htag blue" style="text-decoration:none;cursor:pointer;">
- <svg width="16" height="16" viewBox="0 0 24 24" fill="#29b6f6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.96-1.28 1.24c-.14.14-.26.26-.52.26l.18-2.68 4.76-4.3c.2-.18-.04-.28-.32-.1L7.6 14.96l-2.6-.82c-.56-.18-.58-.56.12-.82l10.16-3.92c.48-.16.9.12.76.8z"/></svg>
+    <a href="https://t.me/GenioX007" target="_blank" class="contact-pill p-blue">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#29b6f6"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.48.7-.96.44l-2.64-1.96-1.28 1.24c-.14.14-.26.26-.52.26l.18-2.68 4.76-4.3c.2-.18-.04-.28-.32-.1L7.6 14.96l-2.6-.82c-.56-.18-.58-.56.12-.82l10.16-3.92c.48-.16.9.12.76.8z"/></svg>
       Telegram
     </a>
-    <a href="https://www.facebook.com/GenioX007" target="_blank" class="htag blue" style="text-decoration:none;cursor:pointer;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#5b8def"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
-      Facebook
-    </a>
-    <a href="https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c" target="_blank" class="htag green" style="text-decoration:none;cursor:pointer;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="#4ade80"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.16.61 4.18 1.67 5.9L2.99 22l4.24-1.35A9.97 9.97 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 13.5l-2.55-2.72-4.98 2.72L10.98 9l2.62 2.72L18.5 9 13 15.5z"/></svg>
+    <a href="https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c" target="_blank" class="contact-pill" style="border-color:rgba(0,132,255,0.4);">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#0084ff"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.16.61 4.18 1.67 5.9L2.99 22l4.24-1.35A9.97 9.97 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm1 13.5l-2.55-2.72-4.98 2.72L10.98 9l2.62 2.72L18.5 9 13 15.5z"/></svg>
       Messenger
+    </a>
+    <a href="https://youtube.com/@dmanhhgeniox7sf2?si=PJHdJ4beMA_BI8QN" target="_blank" class="contact-pill p-red" id="youtubeHeroLink">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="#ff3b3b"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4L15.8 12z"/></svg>
+      YouTube
     </a>
   </div>
 </div>
 
 <main>
-  <section class="section active" id="sec-vip">
+  <section class="section active" id="sec-trangchu">
+    <div class="section-title"> Trang Chủ</div>
+    <p style="color:var(--muted);line-height:1.8;margin-bottom:1.5rem;font-size:.95rem;">
+      Chào mừng đến với <strong style="color:var(--accent)"><span style="color:#d8b4fe">GenioXShipp</span></strong> — nơi cung cấp VIP, vũ khí, giáp và set đồ độc quyền cho Shadow Fight 2 Private Server 2. Chọn danh mục bên dưới để bắt đầu mua sắm!
+    </p>
+    <div class="vip-single">
+      <div class="vip-card-main silver" style="text-align:center;" onclick="window.open('https://sf2privateserver.com','_blank')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#f5b942,#e8940c);box-shadow:0 8px 20px rgba(232,148,12,0.4);"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#241800" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;">TẢI GAME</div>
+        <div class="vip-tagline">Tải Shadow Fight 2 Private Server 2</div>
+        <button class="btn-vip-main" onclick="event.stopPropagation();window.open('https://sf2privateserver.com','_blank')">⬇ Tải Game</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="window.open('https://youtube.com/@dmanhhgeniox7sf2?si=PJHdJ4beMA_BI8QN','_blank')" id="youtubeHomeLink">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#ff6b6b,#c81c1c);box-shadow:0 8px 20px rgba(255,60,60,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.6 15.6V8.4L15.8 12z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;color:#ff5252;text-shadow:0 0 30px rgba(255,60,60,0.35);">YOUTUBE</div>
+        <div class="vip-tagline">Xem video hướng dẫn, review</div>
+        <button class="btn-vip-main" style="background:#c7cede;color:#0a0c14;" onclick="event.stopPropagation();window.open('https://youtube.com/@dmanhhgeniox7sf2?si=PJHdJ4beMA_BI8QN','_blank')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="window.open('https://t.me/GenioX007','_blank')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#4cc2ff,#0d8ecf);box-shadow:0 8px 20px rgba(41,182,246,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M21.9 3.6c-.3-.2-.7-.3-1.2-.1L2.4 10.9c-.6.2-.9.6-.9 1s.3.8.9 1l4.6 1.5 1.8 5.5c.1.4.5.7.9.7.3 0 .5-.1.7-.3l2.5-2.4 4.5 3.3c.2.2.5.3.8.3.2 0 .4-.1.6-.2.3-.2.5-.5.6-.9l3.2-15c.1-.5-.1-.9-.4-1.1z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;color:#29b6f6;text-shadow:0 0 30px rgba(41,182,246,0.35);">TELEGRAM</div>
+        <div class="vip-tagline">Liên hệ, hỗ trợ qua Telegram</div>
+        <button class="btn-vip-main" style="background:#c7cede;color:#0a0c14;" onclick="event.stopPropagation();window.open('https://t.me/GenioX007','_blank')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="window.open('https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c','_blank')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#4d9fff,#0064e0);box-shadow:0 8px 20px rgba(0,100,224,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.36 2 11.7c0 3.05 1.44 5.77 3.7 7.55V23l3.38-1.86c.9.25 1.87.38 2.92.38 5.52 0 10-4.36 10-9.7C22 6.36 17.52 2 12 2zm1.06 13.06L10.5 12.4l-4.9 2.7 5.4-5.73 2.63 2.66 4.83-2.66-5.4 5.7z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;color:#4d9fff;text-shadow:0 0 30px rgba(0,100,224,0.35);">MESSENGER</div>
+        <div class="vip-tagline">Tham gia nhóm Messenger</div>
+        <button class="btn-vip-main" style="background:#c7cede;color:#0a0c14;" onclick="event.stopPropagation();window.open('https://m.me/j/AbbVo37PLl6QhDHH/?send_source=gc%3Acopy_invite_link_c','_blank')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="window.open('https://www.facebook.com/GenioX007','_blank')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#7ba7f5,#3b5fc7);box-shadow:0 8px 20px rgba(91,141,239,0.4);"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;color:#5b8def;text-shadow:0 0 30px rgba(91,141,239,0.35);">FACEBOOK</div>
+        <div class="vip-tagline">Theo dõi trang Facebook</div>
+        <button class="btn-vip-main" style="background:#c7cede;color:#0a0c14;" onclick="event.stopPropagation();window.open('https://www.facebook.com/GenioX007','_blank')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="switchTab('weapon')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#ff8a65,#c8371a);box-shadow:0 8px 20px rgba(200,55,26,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="M13 19l6-6"/><path d="M16 16l4 4"/><path d="M19 21l2-2"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;">VŨ KHÍ</div>
+        <div class="vip-tagline">Khám phá kho vũ khí</div>
+        <button class="btn-vip-main" onclick="event.stopPropagation();switchTab('weapon')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="switchTab('armor')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#7ba7c9,#3b6a91);box-shadow:0 8px 20px rgba(59,106,145,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;">GIÁP &amp; MŨ</div>
+        <div class="vip-tagline">Trang bị giáp, mũ </div>
+        <button class="btn-vip-main" onclick="event.stopPropagation();switchTab('armor')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="switchTab('set')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#c084fc,#7c3aed);box-shadow:0 8px 20px rgba(124,58,237,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3a1 1 0 0 0 1-1V4a2 2 0 1 1 4 0v2a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a2 2 0 1 0 0 4h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-2a2 2 0 1 0-4 0v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h2a2 2 0 1 0 0-4H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;">SET</div>
+        <div class="vip-tagline">Công Thức Thần Thoại</div>
+        <button class="btn-vip-main" onclick="event.stopPropagation();switchTab('set')">✦ Xem Ngay</button>
+      </div>
+      <div class="vip-card-main silver" style="text-align:center;" onclick="switchTab('khac')">
+        <div class="vip-glow"></div>
+        <span class="icon-badge" style="background:linear-gradient(135deg,#f5b942,#e8940c);box-shadow:0 8px 20px rgba(232,148,12,0.4);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#241800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-7"/><path d="M12 8c-1.5-4-6-4-6-1.5S8.5 8 12 8zM12 8c1.5-4 6-4 6-1.5S15.5 8 12 8z"/></svg></span>
+        <div class="vip-tier-label" style="font-size:1.5rem;">KHÁC</div>
+        <div class="vip-tagline">Vật phẩm khác</div>
+        <button class="btn-vip-main" onclick="event.stopPropagation();switchTab('khac')">✦ Xem Ngay</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-vip">
     <div class="section-title">⚜️VIP</div>
     <div class="vip-single">
       <div class="vip-card-main" onclick="openVipModal('gold')">
@@ -509,7 +597,7 @@
     </div>
     <div class="set-grid" id="armorGrid"></div>
 
-    <div class="section-title" style="margin-top:2rem;">🧷 Mảnh Lẻ</div>
+    <div class="section-title" style="margin-top:2rem;"> Mảnh Lẻ</div>
     <div class="items-grid" id="armorPieceGrid"></div>
   </section>
 
@@ -528,8 +616,9 @@
 </main>
 
 <footer>
-  <div>Year 2026<span> Private Server2</span> ·Mọi món đồ sẽ được gửi nếu gửi sai hoặc có vấn đề Lh Fb,Telegram để được hỗ trợ · Hỗ trợ 13h - 24h</div>
-  <div>Website chỉ để tham khảo</div>
+  <div>@<span> Private Server2;</span> ·Mọi món đồ sẽ được gửi nếu gửi sai hoặc có vấn đề Liên Hệ để được hỗ trợ · Hỗ trợ 13h - 24h</div>
+  <div>Website chỉ để tham khảo không có mục đích thương mại!</div>
+  </div>
 </footer>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalIfOutside(event)">
@@ -1636,7 +1725,7 @@ function renderOthers(list) {
       <div class="set-header">
         ${o.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
         <div class="set-name">${o.name}</div>
-        <div class="set-long-desc">${o.longDesc}</div>
+        ${o.longDesc ? `<div class="set-long-desc">${o.longDesc}</div>` : ''}
       </div>
       ${piecesHtml}
       <div class="set-footer">
@@ -1693,7 +1782,7 @@ function openOtherModal(idx) {
     <div class="modal-item-img-container" style="padding:0;">
       <img class="modal-set-img" src="${o.image}" alt="${o.name}">
     </div>
-    <div class="modal-details">${o.longDesc}</div>
+    ${o.longDesc ? `<div class="modal-details">${o.longDesc}</div>` : ''}
     ${videoHtml}
     ${piecesHtml}
     <div class="modal-price-row">
@@ -1748,7 +1837,7 @@ function renderArmors(list) {
       <div class="set-header">
         ${a.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
         <div class="set-name">${a.name}</div>
-        <div class="set-long-desc">${a.longDesc}</div>
+        ${a.longDesc ? `<div class="set-long-desc">${a.longDesc}</div>` : ''}
       </div>
 
       <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
@@ -1808,10 +1897,10 @@ function openArmorModal(idx) {
     <div class="modal-item-img-container" style="padding:0;">
       <img class="modal-set-img" src="${a.image}" alt="${a.name}">
     </div>
-    <div class="modal-details">${a.longDesc}</div>
+    ${a.longDesc ? `<div class="modal-details">${a.longDesc}</div>` : ''}
     ${videoHtml}
     <div style="margin-bottom:14px">
-      <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Áo + Giáp đi kèm</div>
+      <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Mũ Giáp đi kèm</div>
       <div class="modal-items-grid">
         ${a.pieces.map((it, itemIdx) => `
           <div class="modal-piece-card" title="${it.name}" onclick="zoomArmorPiece(${idx}, ${itemIdx})">
@@ -1871,7 +1960,7 @@ function openArmorPieceModal(idx) {
       <img src="${p.image}" class="modal-item-real-img" alt="${p.name}">
     </div>
     <div class="modal-section-title"> Mô tả vật phẩm</div>
-    <div class="modal-details">${p.desc}</div>
+    ${p.desc ? `<div class="modal-details">${p.desc}</div>` : ''}
     ${videoHtml}
     <div class="modal-price-row">
       <div>
@@ -1899,7 +1988,7 @@ function renderSets(list) {
       <div class="set-header">
         ${s.hot ? `<div class="hot-label">Bán chạy nhất</div>` : ''}
         <div class="set-name">${s.name}</div>
-        <div class="set-long-desc">${s.longDesc}</div>
+        ${s.longDesc ? `<div class="set-long-desc">${s.longDesc}</div>` : ''}
       </div>
       
       <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
@@ -1986,7 +2075,7 @@ function openWeaponModal(idx) {
       <img src="${w.image}" class="modal-item-real-img" alt="${w.name}">
     </div>
     <div class="modal-section-title"> Mô tả vật phẩm</div>
-    <div class="modal-details">${w.desc}</div>
+    ${w.desc ? `<div class="modal-details">${w.desc}</div>` : ''}
     ${videoHtml}
     <div class="modal-price-row">
       <div>
@@ -2019,7 +2108,7 @@ function openVipModal(tier) {
   const v = vipTiers[tier] || vipTiers.gold;
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-title">${v.title}</div>
-    <div class="modal-details">${v.desc}</div>
+    ${v.desc ? `<div class="modal-details">${v.desc}</div>` : ''}
     <div class="modal-price-row">
       <div>
         <div style="font-size:.78rem;color:var(--muted)">Giá gói:</div>
@@ -2046,7 +2135,7 @@ function openSetModal(idx) {
     <div class="modal-item-img-container" style="padding:0;">
       <img class="modal-set-img" src="${s.image}" alt="${s.name}">
     </div>
-    <div class="modal-details">${s.longDesc}</div>
+    ${s.longDesc ? `<div class="modal-details">${s.longDesc}</div>` : ''}
     ${videoHtml}
     <div style="margin-bottom:14px">
       <div style="font-size:.8rem;color:var(--muted);margin-bottom:8px;font-family:'Be Vietnam Pro',sans-serif;letter-spacing:1px;text-transform:uppercase;">Danh sách 5 mảnh</div>
