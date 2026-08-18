@@ -429,7 +429,7 @@
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="javascript:void(0)" class="active" data-tab="trangchu"> Trang Chủ</a>
-    <a href="javascript:void(0)" data-tab="vip">👑 VIP</a>
+    <a href="javascript:void(0)" data-tab="vip">VIP</a>
     <a href="javascript:void(0)" data-tab="weapon">Vũ Khí</a>
     <a href="javascript:void(0)" data-tab="armor"> Giáp &amp; Mũ</a>
     <a href="javascript:void(0)" data-tab="set">Set</a>
@@ -669,7 +669,7 @@ const weapons = [
 
   { 
     name:'Eye Of The Crimson Dawn', 
-    type:'', 
+    type:'Guandao', 
     price:'7,5$', featured: true, hot: true,
     theme: 'theme-gold',
     image: 'public/image/mucvukhi/Eye Of The Crimson Dawn/Eye Of The Crimson Dawn.webp', 
@@ -682,7 +682,7 @@ const weapons = [
     price:'7,5$', featured: true, hot: true,
     theme: 'theme-gold',
     image: 'public/image/mucvukhi/IncisiveScarlet/IncisiveScarlet.webp', 
-    desc:'Sắc đỏ rực rỡ, lưỡi kiếm sắc bén.Combo có thể gây chí mạng.',
+    desc:'Incisive Scarlet là một vũ khí cận chiến mạnh mẽ, được thiết kế để gây sát thương lớn và có khả năng tấn công nhanh chóng. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
     video:'public/image/mucvukhi/IncisiveScarlet/cachsudungtonfa.mp4' 
   },
   { 
@@ -691,7 +691,7 @@ const weapons = [
     price:'7,5$', featured: true, hot: true,
     theme: 'theme-gold',
     image: 'public/image/mucvukhi/VoidPearl/Void Pearl.webp', 
-    desc:'void pearl, một vũ khí huyền bí với sức mạnh vô tận. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
+    desc:'Void Pearl là một vũ khí huyền bí với sức mạnh vô tận. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
     video:'public/image/mucvukhi/VoidPearl/videovoidpearl.mp4' 
   },
   { 
@@ -1709,7 +1709,7 @@ function renderOthers(list) {
   grid.innerHTML = data.map((o) => {
     const i = others.indexOf(o);
     const piecesHtml = o.pieces && o.pieces.length ? `
-      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để xem chi tiết )</div>
       <div class="set-items-preview-grid">
         ${o.pieces.map((it, itemIdx) => `
           <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomOtherPiece(${i}, ${itemIdx})">
@@ -1840,7 +1840,7 @@ function renderArmors(list) {
         ${a.longDesc ? `<div class="set-long-desc">${a.longDesc}</div>` : ''}
       </div>
 
-      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để xem chi tiết)</div>
       <div class="set-items-preview-grid">
         ${a.pieces.map((it, itemIdx) => `
           <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomArmorPiece(${idx}, ${itemIdx})">
@@ -1991,7 +1991,7 @@ function renderSets(list) {
         ${s.longDesc ? `<div class="set-long-desc">${s.longDesc}</div>` : ''}
       </div>
       
-      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để phóng to):</div>
+      <div style="font-size:.7rem;color:var(--muted);padding:0 18px 4px;font-family:'Be Vietnam Pro',sans-serif;text-transform:uppercase;letter-spacing:1px;">Bao gồm (Ấn để xem chi tiết)</div>
       <div class="set-items-preview-grid">
         ${s.items.map((it, itemIdx) => `
           <div class="set-piece-box" title="${it.name}" onclick="event.stopPropagation(); zoomPiece(${idx}, ${itemIdx})">
