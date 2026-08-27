@@ -350,6 +350,22 @@
   .btn-confirm:hover{background:var(--accent2);transform:translateY(-1px);}
   .btn-cancel{background:var(--bg3);color:var(--muted);border:1px solid var(--border) !important;}
 
+  /* ANNOUNCEMENT POPUP */
+  .announce-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:300;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
+  .announce-overlay.open{display:flex;}
+  .announce-box{position:relative;width:100%;max-width:440px;background:linear-gradient(160deg,#1c2138 0%,#181c2e 100%);border:2px solid rgba(232,160,32,0.5);border-radius:18px;padding:28px 24px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(232,160,32,0.12);text-align:center;animation:announceIn .3s ease;}
+  @keyframes announceIn{from{opacity:0;transform:translateY(-12px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+  .announce-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--muted);width:30px;height:30px;border-radius:8px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .announce-close:hover{color:var(--text);background:rgba(255,255,255,0.12);}
+  .announce-icon{font-size:2.6rem;margin-bottom:8px;display:block;}
+  .announce-title{font-family:'Be Vietnam Pro',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:1px;color:var(--accent2);text-transform:uppercase;margin-bottom:12px;}
+  .announce-body{color:var(--text);font-size:.92rem;line-height:1.6;text-align:left;}
+  .announce-body ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+  .announce-body li{display:flex;align-items:flex-start;gap:8px;color:var(--muted);}
+  .announce-body li::before{content:'✦';color:var(--accent);flex-shrink:0;}
+  .announce-btn{margin-top:20px;width:100%;padding:13px;border-radius:10px;border:none;font-family:'Be Vietnam Pro',sans-serif;font-weight:700;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;background:var(--accent);color:#0a0c14;cursor:pointer;transition:all .2s;}
+  .announce-btn:hover{background:var(--accent2);transform:translateY(-1px);}
+
   footer{border-top:1px solid var(--border);background:var(--bg2);padding:1.5rem 1rem;text-align:center;color:var(--muted);font-size:.8rem;}
   footer span{color:var(--accent);}
 
@@ -379,6 +395,23 @@
 </style>
 </head>
 <body>
+
+<div class="announce-overlay" id="announceOverlay">
+  <div class="announce-box">
+    <span class="announce-icon">📢</span>
+    <div class="announce-title">Thông Báo</div>
+    <div class="announce-body">
+      Chào mừng bạn đến với GenioXShipp! Một vài lưu ý trước khi mua hàng:
+      <ul>
+        <li>Lưu ý: Cách lưu key đăng nhập có trong youtube nếu bạn chưa biết!</li>
+        <li>Liên Hệ Fb hoặc Telegram để được hỗ trợ</li>
+        <li>Đơn sẽ chậm nhưng chắc chắn sẽ có , Nếu có lỗi gì thì liên hệ để được hỗ trợ</li>
+        <li>Cảm ơn bạn đã tin tưởng và ủng hộ chúng tôi!</li>
+      </ul>
+    </div>
+    <button class="announce-btn" onclick="closeAnnounce()">Đã Hiểu</button>
+  </div>
+</div>
 
 <header>
   <div class="header-inner">
@@ -690,7 +723,7 @@ const weapons = [
     type:'Composite Glaive', 
     price:'7,5$', featured: true, hot: true,
     theme: 'theme-gold',
-    image: 'public/image/mucvukhi/VoidPearl/Void Pearl.webp', 
+    image: 'public/image/mucvukhi/VoidPearl/Void Pearl.png', 
     desc:'Void Pearl là một vũ khí huyền bí với sức mạnh vô tận. Khi sử dụng, nó có thể tạo ra các đòn đánh đặc biệt và tăng cường khả năng chiến đấu của người sở hữu.',
     video:'public/image/mucvukhi/VoidPearl/videovoidpearl.mp4' 
   },
@@ -2163,6 +2196,13 @@ function closeModal() {
   document.getElementById('modalOverlay').classList.remove('open'); 
 }
 function closeModalIfOutside(e) { if(e.target===document.getElementById('modalOverlay')) closeModal(); }
+
+function closeAnnounce() {
+  document.getElementById('announceOverlay').classList.remove('open');
+}
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('announceOverlay').classList.add('open');
+});
 
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
